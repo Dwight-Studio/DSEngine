@@ -6,10 +6,10 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package fr.dwightstudio.dpt.engine.resources;
+package fr.dwightstudio.dpt.DSEngine.resources;
 
-import fr.dwightstudio.dpt.engine.graphics.objects.Texture;
-import fr.dwightstudio.dpt.engine.graphics.utils.TextureUtils;
+import fr.dwightstudio.dpt.DSEngine.graphics.objects.Texture;
+import fr.dwightstudio.dpt.DSEngine.graphics.utils.TextureUtils;
 
 import java.util.HashMap;
 import java.util.Map;

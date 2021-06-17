@@ -6,9 +6,9 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package fr.dwightstudio.dpt.engine.events.types.gui;
+package fr.dwightstudio.dpt.DSEngine.events.types.gui;
 
-import fr.dwightstudio.dpt.engine.events.types.Event;
+import fr.dwightstudio.dpt.DSEngine.events.types.Event;
 
 /**
  * All event concerning GUI

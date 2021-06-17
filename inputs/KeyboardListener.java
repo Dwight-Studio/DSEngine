@@ -6,7 +6,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package fr.dwightstudio.dpt.engine.inputs;
+package fr.dwightstudio.dpt.DSEngine.inputs;
 
 import org.lwjgl.glfw.GLFWKeyCallbackI;
 

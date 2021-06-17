@@ -6,7 +6,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package fr.dwightstudio.dpt.engine.graphics.gui;
+package fr.dwightstudio.dpt.DSEngine.graphics.gui;
 
 public class ProgressBar {
     // TODO: Progressbar object

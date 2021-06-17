@@ -6,7 +6,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package fr.dwightstudio.dpt.engine.graphics.renderers;
+package fr.dwightstudio.dpt.DSEngine.graphics.renderers;
 
 public abstract class Renderers implements Comparable<Renderers> {
     int m_zIndex;

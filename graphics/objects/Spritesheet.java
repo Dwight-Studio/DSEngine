@@ -6,7 +6,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package fr.dwightstudio.dpt.engine.graphics.objects;
+package fr.dwightstudio.dpt.DSEngine.graphics.objects;
 
 import java.util.List;
 

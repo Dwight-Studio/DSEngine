@@ -6,17 +6,17 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package fr.dwightstudio.dpt.engine.graphics;
+package fr.dwightstudio.dpt.DSEngine.graphics;
 
-import fr.dwightstudio.dpt.engine.events.EventSystem;
-import fr.dwightstudio.dpt.engine.graphics.utils.FramebufferManager;
-import fr.dwightstudio.dpt.engine.graphics.utils.SceneManager;
-import fr.dwightstudio.dpt.engine.logging.GameLogger;
+import fr.dwightstudio.dpt.DSEngine.events.EventSystem;
+import fr.dwightstudio.dpt.DSEngine.graphics.utils.FramebufferManager;
+import fr.dwightstudio.dpt.DSEngine.graphics.utils.SceneManager;
+import fr.dwightstudio.dpt.DSEngine.logging.GameLogger;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
 
-import static fr.dwightstudio.dpt.engine.DSEngine.FULLSCREEN;
-import static fr.dwightstudio.dpt.engine.DSEngine.WINDOWED;
+import static fr.dwightstudio.dpt.DSEngine.Engine.FULLSCREEN;
+import static fr.dwightstudio.dpt.DSEngine.Engine.WINDOWED;
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;

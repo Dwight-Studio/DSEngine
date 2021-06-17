@@ -6,10 +6,10 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package fr.dwightstudio.dpt.engine.events.types.gui.button;
+package fr.dwightstudio.dpt.DSEngine.events.types.gui.button;
 
-import fr.dwightstudio.dpt.engine.events.types.gui.GUIEvent;
-import fr.dwightstudio.dpt.engine.graphics.gui.Button;
+import fr.dwightstudio.dpt.DSEngine.events.types.gui.GUIEvent;
+import fr.dwightstudio.dpt.DSEngine.graphics.gui.Button;
 
 /**
  * Parent event for ButtonClickEvent or ButtonReleaseEvent etc...

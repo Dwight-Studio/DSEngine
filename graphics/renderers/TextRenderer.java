@@ -6,13 +6,13 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package fr.dwightstudio.dpt.engine.graphics.renderers;
+package fr.dwightstudio.dpt.DSEngine.graphics.renderers;
 
-import fr.dwightstudio.dpt.engine.graphics.gui.Label;
-import fr.dwightstudio.dpt.engine.graphics.objects.FontAtlas;
-import fr.dwightstudio.dpt.engine.graphics.objects.Shader;
-import fr.dwightstudio.dpt.engine.graphics.utils.SceneManager;
-import fr.dwightstudio.dpt.engine.resources.ResourceManager;
+import fr.dwightstudio.dpt.DSEngine.graphics.gui.Label;
+import fr.dwightstudio.dpt.DSEngine.graphics.objects.FontAtlas;
+import fr.dwightstudio.dpt.DSEngine.graphics.objects.Shader;
+import fr.dwightstudio.dpt.DSEngine.graphics.utils.SceneManager;
+import fr.dwightstudio.dpt.DSEngine.resources.ResourceManager;
 import org.jetbrains.annotations.NotNull;
 
 import static org.lwjgl.opengl.GL11.GL_FLOAT;

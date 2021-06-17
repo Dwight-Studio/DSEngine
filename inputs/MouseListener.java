@@ -6,10 +6,10 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package fr.dwightstudio.dpt.engine.inputs;
+package fr.dwightstudio.dpt.DSEngine.inputs;
 
-import fr.dwightstudio.dpt.engine.graphics.GLFWWindow;
-import fr.dwightstudio.dpt.engine.graphics.gui.Button;
+import fr.dwightstudio.dpt.DSEngine.graphics.GLFWWindow;
+import fr.dwightstudio.dpt.DSEngine.graphics.gui.Button;
 import org.joml.Vector2f;
 import org.lwjgl.glfw.GLFWCursorPosCallbackI;
 import org.lwjgl.glfw.GLFWMouseButtonCallbackI;

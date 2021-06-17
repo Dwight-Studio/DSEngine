@@ -6,10 +6,10 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package fr.dwightstudio.dpt.engine.graphics.utils;
+package fr.dwightstudio.dpt.DSEngine.graphics.utils;
 
-import fr.dwightstudio.dpt.engine.graphics.objects.Texture;
-import fr.dwightstudio.dpt.engine.logging.GameLogger;
+import fr.dwightstudio.dpt.DSEngine.graphics.objects.Texture;
+import fr.dwightstudio.dpt.DSEngine.logging.GameLogger;
 import org.lwjgl.BufferUtils;
 
 import java.awt.image.BufferedImage;

@@ -6,11 +6,11 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package fr.dwightstudio.dpt.engine.graphics.renderers;
+package fr.dwightstudio.dpt.DSEngine.graphics.renderers;
 
-import fr.dwightstudio.dpt.engine.graphics.gui.Label;
-import fr.dwightstudio.dpt.engine.graphics.primitives.Surface;
-import fr.dwightstudio.dpt.engine.scripting.GameObject;
+import fr.dwightstudio.dpt.DSEngine.graphics.gui.Label;
+import fr.dwightstudio.dpt.DSEngine.graphics.primitives.Surface;
+import fr.dwightstudio.dpt.DSEngine.scripting.GameObject;
 
 import java.util.ArrayList;
 import java.util.Collections;

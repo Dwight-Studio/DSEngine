@@ -6,14 +6,9 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package fr.dwightstudio.dpt.engine.graphics.utils;
+package fr.dwightstudio.dpt.DSEngine.graphics.utils;
 
-import fr.dwightstudio.dpt.engine.logging.GameLogger;
-import fr.dwightstudio.dpt.engine.scripting.Scene;
-import fr.dwightstudio.dpt.game.levels.MainScene;
-import fr.dwightstudio.dpt.game.levels.TestScene;
-
-import java.text.MessageFormat;
+import fr.dwightstudio.dpt.DSEngine.scripting.Scene;
 
 public class SceneManager {
     private static Scene currentScene;

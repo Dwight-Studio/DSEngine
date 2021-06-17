@@ -6,12 +6,12 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package fr.dwightstudio.dpt.engine.graphics.objects;
+package fr.dwightstudio.dpt.DSEngine.graphics.objects;
 
-import fr.dwightstudio.dpt.engine.graphics.GLFWWindow;
-import fr.dwightstudio.dpt.engine.graphics.utils.FramebufferManager;
-import fr.dwightstudio.dpt.engine.logging.GameLogger;
-import fr.dwightstudio.dpt.engine.resources.ResourceManager;
+import fr.dwightstudio.dpt.DSEngine.graphics.GLFWWindow;
+import fr.dwightstudio.dpt.DSEngine.graphics.utils.FramebufferManager;
+import fr.dwightstudio.dpt.DSEngine.logging.GameLogger;
+import fr.dwightstudio.dpt.DSEngine.resources.ResourceManager;
 
 import java.text.MessageFormat;
 
