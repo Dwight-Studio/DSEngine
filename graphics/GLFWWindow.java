@@ -15,6 +15,8 @@ import fr.dwightstudio.dpt.DSEngine.logging.GameLogger;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
 
+import java.text.MessageFormat;
+
 import static fr.dwightstudio.dpt.DSEngine.Engine.FULLSCREEN;
 import static fr.dwightstudio.dpt.DSEngine.Engine.WINDOWED;
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
@@ -109,6 +111,7 @@ public class GLFWWindow {
         //      screen is in sync by enabling nvidia-drm with modprobe on linux
         glfwShowWindow(window); // Make the window visible
         GL.createCapabilities(); // Called before any OpenGL function
+        GameLogger.getLogger("GLFWWindow").debug(MessageFormat.format("{0} {1}", glGetString(GL_VENDOR), glGetString(GL_RENDERER)));
         glEnable(GL_TEXTURE_2D); // Enable the GL_TEXTURE_2D feature
         glEnable(GL_BLEND);
         glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
@@ -152,9 +155,7 @@ public class GLFWWindow {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear the current framebuffer
 
         // Render the current scene
-        if (SceneManager.getCurrentScene() != null) {
-            SceneManager.getCurrentScene().update(dt);
-        }
+        SceneManager.updateScenes(dt);
 
         FramebufferManager.renderAll();
         glfwSwapBuffers(window); // Swap the buffers

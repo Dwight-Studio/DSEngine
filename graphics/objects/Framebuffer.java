@@ -12,20 +12,22 @@ import fr.dwightstudio.dpt.DSEngine.graphics.GLFWWindow;
 import fr.dwightstudio.dpt.DSEngine.graphics.utils.FramebufferManager;
 import fr.dwightstudio.dpt.DSEngine.logging.GameLogger;
 import fr.dwightstudio.dpt.DSEngine.resources.ResourceManager;
+import fr.dwightstudio.dpt.DSEngine.scripting.Component;
+import org.joml.Vector2f;
 
 import java.text.MessageFormat;
 
 import static org.lwjgl.opengl.GL11.GL_NEAREST;
 import static org.lwjgl.opengl.GL30.*;
 
-public class Framebuffer {
+public class Framebuffer extends Component {
 
     private final int baseWidth;
     private final int baseHeight;
-    private final int scaleX;
-    private final int scaleY;
-    private final int x;
-    private final int y;
+    private final float scaleX;
+    private final float scaleY;
+    private final float x;
+    private final float y;
 
     private int frameBufferObjectID;
     private int textureID;
@@ -34,6 +36,14 @@ public class Framebuffer {
     private int frambufferVertexArrayObjectID;
     private final Shader shader;
 
+    /**
+     * Create a new Frambuffer object
+     *
+     * @param x the X position
+     * @param y the Y position
+     * @param baseWidth the base width
+     * @param baseHeight the base height
+     */
     public Framebuffer(int x, int y, int baseWidth, int baseHeight) {
         this.x = x;
         this.y = y;
@@ -43,10 +53,20 @@ public class Framebuffer {
         this.scaleY = baseHeight;
         ResourceManager.load("./src/main/resources/shaders/framebuffer.glsl", Shader.class);
         this.shader = ResourceManager.get("./src/main/resources/shaders/framebuffer.glsl");
-        init();
+        initFramebuffer();
     }
 
-    public Framebuffer(int x, int y, int baseWidth, int baseHeight, int scaleX, int scaleY) {
+    /**
+     * Create a new Framebuffer object
+     *
+     * @param x the X position
+     * @param y the Y position
+     * @param baseWidth the base width
+     * @param baseHeight the base height
+     * @param scaleX the X scaling
+     * @param scaleY the Y scaling
+     */
+    public Framebuffer(float x, float y, int baseWidth, int baseHeight, float scaleX, float scaleY) {
         this.x = x;
         this.y = y;
         this.baseWidth = baseWidth;
@@ -55,10 +75,13 @@ public class Framebuffer {
         this.scaleY = scaleY;
         ResourceManager.load("./src/main/resources/shaders/framebuffer.glsl", Shader.class);
         this.shader = ResourceManager.get("./src/main/resources/shaders/framebuffer.glsl");
-        init();
+        initFramebuffer();
     }
 
-    private void init() {
+    /**
+     * Initialize the Framebuffer
+     */
+    private void initFramebuffer() {
         frameBufferObjectID = glGenFramebuffers();
         glBindFramebuffer(GL_FRAMEBUFFER, frameBufferObjectID);
 
@@ -82,29 +105,23 @@ public class Framebuffer {
         genVBO();
     }
 
+    /**
+     * Generate a Vertex Buffer Object for the Framebuffer to display the Texture
+     */
     private void genVBO() {
         float renderX = x / GLFWWindow.getWidth() - 1.0f;
         float renderY = y / GLFWWindow.getHeight() - 1.0f;
-        float renderWidth = scaleX / GLFWWindow.getWidth();
-        float renderHeight = scaleY / GLFWWindow.getHeight();
+        float renderWidth = scaleX / GLFWWindow.getWidth() + renderX;
+        float renderHeight = scaleY / GLFWWindow.getHeight() + renderY;
         float[] vertices = {
-                renderX,  renderHeight, 0.0f, 1.0f,
+                renderX, renderHeight, 0.0f, 1.0f,
                 renderX, renderY, 0.0f, 0.0f,
                 renderWidth, renderY, 1.0f, 0.0f,
 
-                renderX,  renderHeight, 0.0f, 1.0f,
+                renderX, renderHeight, 0.0f, 1.0f,
                 renderWidth, renderY, 1.0f, 0.0f,
                 renderWidth,  renderHeight, 1.0f, 1.0f
         };
-        /*float vertices[] = {
-                -1.0f,  0.5f,  0.0f, 1.0f,
-                -1.0f, -1.0f,  0.0f, 0.0f,
-                0.5f, -1.0f,  1.0f, 0.0f,
-
-                -1.0f,  0.5f,  0.0f, 1.0f,
-                0.5f, -1.0f,  1.0f, 0.0f,
-                0.5f,  0.5f,  1.0f, 1.0f
-        };*/
         frambufferVertexArrayObjectID = glGenVertexArrays();
         glBindVertexArray(frambufferVertexArrayObjectID);
 
@@ -123,6 +140,9 @@ public class Framebuffer {
         FramebufferManager.add(this);
     }
 
+    /**
+     * Render the Framebuffer Texture on the screen
+     */
     public void render() {
         shader.bind();
         glBindVertexArray(frambufferVertexArrayObjectID);
@@ -134,39 +154,65 @@ public class Framebuffer {
         shader.unbind();
     }
 
+    /**
+     * @return the base width
+     */
     public int getBaseWidth() {
         return baseWidth;
     }
 
+    /**
+     * @return the base height
+     */
     public int getHeight() {
         return baseHeight;
     }
 
+    public Vector2f getPosition() {
+        return new Vector2f(x, y);
+    }
+
+    /**
+     * Bind the Framebuffer object
+     */
     public void bind() {
         glBindTexture(GL_TEXTURE_2D, 0);
         glBindFramebuffer(GL_FRAMEBUFFER, frameBufferObjectID);
-        //glViewport(0, 0, width, height);
     }
 
+    /**
+     * Unbind the Framebuffer object
+     */
     public void unbind() {
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
-        //glViewport(0, 0, GLFWWindow.getWidth(), GLFWWindow.getHeight());
     }
 
+    /**
+     * Delete the Framebuffer object and it's associated Texture and Render buffer
+     */
     public void delete() {
         glDeleteFramebuffers(frameBufferObjectID);
         glDeleteTextures(textureID);
         glDeleteRenderbuffers(renderBufferID);
     }
 
+    /**
+     * @return the Framebuffer object ID
+     */
     public int getFrameBufferObjectID() {
         return frameBufferObjectID;
     }
 
+    /**
+     * @return the Framebuffer Texture ID
+     */
     public int getTextureID() {
         return textureID;
     }
 
+    /**
+     * @return the Framebuffer Render Buffer ID
+     */
     public int getRenderBufferID() {
         return renderBufferID;
     }

@@ -8,11 +8,10 @@
 
 package fr.dwightstudio.dpt.DSEngine.scripting;
 
-import fr.dwightstudio.dpt.DSEngine.graphics.GLFWWindow;
 import fr.dwightstudio.dpt.DSEngine.graphics.objects.Camera;
 import fr.dwightstudio.dpt.DSEngine.graphics.objects.Color;
-import fr.dwightstudio.dpt.DSEngine.graphics.objects.Framebuffer;
 import fr.dwightstudio.dpt.DSEngine.graphics.renderers.RendererHelper;
+import fr.dwightstudio.dpt.DSEngine.graphics.utils.SceneManager;
 import org.joml.Vector2f;
 
 import java.util.ArrayList;
@@ -26,7 +25,6 @@ public abstract class Scene {
     private boolean isRunning = false;
     protected List<GameObject> gameObjects = new ArrayList<>();
     protected RendererHelper rendererHelper = new RendererHelper();
-    protected Framebuffer framebuffer;
 
     /**
      * Create a new Scene
@@ -34,6 +32,7 @@ public abstract class Scene {
     public Scene() {
         this.camera = new Camera(new Vector2f());
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+        SceneManager.add(this);
     }
 
     /**
@@ -51,7 +50,18 @@ public abstract class Scene {
 
     }
 
-    public abstract void update(double dt);
+    public void update(double dt) {
+        for (GameObject gameObject : this.gameObjects) {
+            gameObject.update(dt);
+        }
+        if (SceneManager.getCurrentScene() == this) {
+            render();
+        }
+    }
+
+    public void render() {
+        rendererHelper.render();
+    }
 
     /**
      * Add a GameObject to the Scene

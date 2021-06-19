@@ -119,6 +119,8 @@ public class TextRenderer extends Renderers {
         }
 
         shader.bind();
+        shader.uploadMat4f("uProjectionMatrix", SceneManager.getCurrentScene().getCamera().getProjectionMatrix());
+        shader.uploadMat4f("uViewMatrix", SceneManager.getCurrentScene().getCamera().getViewMatrix());
         glActiveTexture(GL_TEXTURE0);
         this.fontAtlas.getTexture().bind();
 

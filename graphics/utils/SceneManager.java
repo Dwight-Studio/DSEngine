@@ -10,8 +10,12 @@ package fr.dwightstudio.dpt.DSEngine.graphics.utils;
 
 import fr.dwightstudio.dpt.DSEngine.scripting.Scene;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SceneManager {
     private static Scene currentScene;
+    private static List<Scene> scenes = new ArrayList<>();
 
     /**
      * Change the current Scene to the specified Scene
@@ -29,5 +33,19 @@ public class SceneManager {
      */
     public static Scene getCurrentScene() {
         return currentScene;
+    }
+
+    public static void updateScenes(double dt) {
+        for (Scene scene : scenes) {
+            scene.update(dt);
+        }
+    }
+
+    public static void add(Scene scene) {
+        scenes.add(scene);
+    }
+
+    public static void remove(Scene scene) {
+        scenes.remove(scene);
     }
 }

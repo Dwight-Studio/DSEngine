@@ -10,7 +10,9 @@ package fr.dwightstudio.dpt.DSEngine.inputs;
 
 import fr.dwightstudio.dpt.DSEngine.graphics.GLFWWindow;
 import fr.dwightstudio.dpt.DSEngine.graphics.gui.Button;
+import fr.dwightstudio.dpt.DSEngine.graphics.utils.SceneManager;
 import org.joml.Vector2f;
+import org.joml.Vector4f;
 import org.lwjgl.glfw.GLFWCursorPosCallbackI;
 import org.lwjgl.glfw.GLFWMouseButtonCallbackI;
 import org.lwjgl.glfw.GLFWScrollCallbackI;
@@ -44,10 +46,27 @@ public class MouseListener {
     };
 
     /**
-     * @return cursor X and Y coordinates
+     * @return cursor X and Y screen coordinates
      */
     public static Vector2f getCursorPos() {
         return new Vector2f(xPos, yPos);
+    }
+
+    /**
+     * @return cursor X and Y orthonormal coordinates
+     */
+    public static Vector2f getOrthoCursorPos() {
+        float currentX = getCursorPos().x;
+        float currentY = getCursorPos().y;
+        currentX = (currentX / (float) GLFWWindow.getWidth()) * 2.0f - 1.0f;
+        currentY = (currentY / (float) GLFWWindow.getHeight()) * 2.0f - 1.0f;
+        Vector4f tmpX = new Vector4f(currentX, 0, 0, 1);
+        Vector4f tmpY = new Vector4f(0, currentY, 0, 1);
+        tmpX.mul(SceneManager.getCurrentScene().getCamera().getInverseProjectionMatrix()).mul(SceneManager.getCurrentScene().getCamera().getInverseViewMatrix());
+        tmpY.mul(SceneManager.getCurrentScene().getCamera().getInverseProjectionMatrix()).mul(SceneManager.getCurrentScene().getCamera().getInverseViewMatrix());
+        currentX = tmpX.x;
+        currentY = tmpY.y;
+        return new Vector2f(currentX, currentY);
     }
 
     /**

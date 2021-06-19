@@ -30,10 +30,6 @@ public class FramebufferManager {
         return framebuffers;
     }
 
-    public static void render(Framebuffer framebuffer) {
-        framebuffer.render();
-    }
-
     public static void renderAll() {
         for (Framebuffer framebuffer : framebuffers) {
             framebuffer.render();
