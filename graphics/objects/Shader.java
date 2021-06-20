@@ -19,6 +19,8 @@ public class Shader {
 
     private final int programID;
     private boolean isInUse = false;
+    FloatBuffer mat4fvBuffer = BufferUtils.createFloatBuffer(16);
+    FloatBuffer mat3fvBuffer = BufferUtils.createFloatBuffer(9);
 
     /**
      * Create a new Shader
@@ -75,10 +77,10 @@ public class Shader {
         //  [0, 0, 0, 0],     to      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         //  [0, 0, 0, 0],
         //  [0, 0, 0, 0]]
-        FloatBuffer matBuffer = BufferUtils.createFloatBuffer(16);
-        mat4.get(matBuffer);
+        mat4fvBuffer.clear();
+        mat4.get(mat4fvBuffer);
         bind();
-        glUniformMatrix4fv(glGetUniformLocation(programID, varName), false, matBuffer);
+        glUniformMatrix4fv(glGetUniformLocation(programID, varName), false, mat4fvBuffer);
     }
 
     /**
@@ -93,10 +95,10 @@ public class Shader {
         //  [0, 0, 0, 0],     to      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         //  [0, 0, 0, 0],
         //  [0, 0, 0, 0]]
-        FloatBuffer matBuffer = BufferUtils.createFloatBuffer(9);
-        mat3.get(matBuffer);
+        mat3fvBuffer.clear();
+        mat3.get(mat3fvBuffer);
         bind();
-        glUniformMatrix3fv(glGetUniformLocation(programID, varName), false, matBuffer);
+        glUniformMatrix3fv(glGetUniformLocation(programID, varName), false, mat3fvBuffer);
     }
 
     /**
@@ -106,9 +108,8 @@ public class Shader {
      * @param bool the boolean to upload
      */
     public void uploadBoolean(String varName, boolean bool) {
-        int val = (bool) ? 1 : 0;
         bind();
-        glUniform1i(glGetUniformLocation(programID, varName), val);
+        glUniform1i(glGetUniformLocation(programID, varName), (bool) ? 1 : 0);
     }
 
     /**

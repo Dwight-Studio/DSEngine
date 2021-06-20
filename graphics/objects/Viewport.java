@@ -15,7 +15,11 @@ public class Viewport extends Framebuffer {
     Scene scene;
 
     /**
-     * Create a new Frambuffer object
+     * Create a new Viewport object
+     *
+     * The base width and the base height correspond to the max screen size which is going to
+     * be upscaled or downscaled according to the X and Y scaling
+     * The X and Y scaling is the final Viewport size on the screen
      *
      * @param x          the X position
      * @param y          the Y position
@@ -27,7 +31,11 @@ public class Viewport extends Framebuffer {
     }
 
     /**
-     * Create a new Framebuffer object
+     * Create a new Viewport object
+     *
+     * The base width and the base height correspond to the max screen size which is going to
+     * be upscaled or downscaled according to the X and Y scaling
+     * The X and Y scaling is the final Viewport size on the screen
      *
      * @param x          the X position
      * @param y          the Y position
@@ -40,10 +48,19 @@ public class Viewport extends Framebuffer {
         super(x, y, baseWidth, baseHeight, scaleX, scaleY);
     }
 
+    /**
+     * Attach a Scene object to the Viewport
+     * The Viewport will change his position with the Camera used in the Scene where this Viewport is instantiated
+     * since it is part of this Scene.
+     *
+     * @param scene the Scene to attach to the Viewport object
+     */
     public void attachScene(Scene scene) {
-        this.scene = scene;
-        scene.init();
-        scene.start();
+        if (this.scene != scene) {
+            this.scene = scene;
+            scene.init();
+            scene.start();
+        }
     }
 
     @Override

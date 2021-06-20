@@ -23,6 +23,7 @@ public class Camera {
     private final Matrix4f inverseViewMatrix;
 
     public final Vector2f position;
+    private final Vector2f zoom;
     private Vector3f cameraFront;
     private Vector3f cameraUp;
 
@@ -33,6 +34,7 @@ public class Camera {
      */
     public Camera(Vector2f position) {
         this.position = position; // Since we are in a 2D view we don't need a Vector3
+        this.zoom = new Vector2f(1.0f, 1.0f);
         this.projectionMatrix = new Matrix4f();
         this.viewMatrix = new Matrix4f();
         this.inverseProjectionMatrix = new Matrix4f();
@@ -53,6 +55,7 @@ public class Camera {
     public void adjustProjection() {
         projectionMatrix.identity(); // Reset the projection matrix (put 0 everywhere)
         projectionMatrix.ortho(0.0f, GLFWWindow.getWidth(), 0.0f, GLFWWindow.getHeight(), 0.0f, 100.0f);
+        projectionMatrix.scale(zoom.x, zoom.y, 1.0f);
         projectionMatrix.invert(inverseProjectionMatrix);
     }
 
@@ -74,6 +77,7 @@ public class Camera {
      * @return the projection matrix
      */
     public Matrix4f getProjectionMatrix() {
+        projectionMatrix.scale(zoom.x, zoom.y, 1.0f);
         return this.projectionMatrix;
     }
 

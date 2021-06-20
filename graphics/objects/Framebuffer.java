@@ -108,6 +108,7 @@ public class Framebuffer extends Component {
     /**
      * Generate a Vertex Buffer Object for the Framebuffer to display the Texture
      */
+    // TODO: The Framebuffer default size should be the window size
     private void genVBO() {
         float renderX = x / GLFWWindow.getWidth() - 1.0f;
         float renderY = y / GLFWWindow.getHeight() - 1.0f;
@@ -178,6 +179,8 @@ public class Framebuffer extends Component {
     public void bind() {
         glBindTexture(GL_TEXTURE_2D, 0);
         glBindFramebuffer(GL_FRAMEBUFFER, frameBufferObjectID);
+        glViewport(0, 0, baseWidth, baseHeight);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
 
     /**
@@ -185,6 +188,7 @@ public class Framebuffer extends Component {
      */
     public void unbind() {
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
+        glViewport(0, 0, GLFWWindow.getWidth(), GLFWWindow.getHeight());
     }
 
     /**
