@@ -6,9 +6,9 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package fr.dwightstudio.dpt.DSEngine.audio;
+package fr.dwightstudio.dsengine.audio;
 
-import fr.dwightstudio.dpt.DSEngine.logging.GameLogger;
+import fr.dwightstudio.dsengine.logging.GameLogger;
 import org.lwjgl.openal.AL;
 import org.lwjgl.openal.ALC;
 import org.lwjgl.openal.ALCCapabilities;

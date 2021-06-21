@@ -6,12 +6,12 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package fr.dwightstudio.dpt.DSEngine.events;
+package fr.dwightstudio.dsengine.events;
 
-import fr.dwightstudio.dpt.DSEngine.events.types.Event;
-import fr.dwightstudio.dpt.DSEngine.inputs.KeyboardListener;
-import fr.dwightstudio.dpt.DSEngine.inputs.MouseListener;
-import fr.dwightstudio.dpt.DSEngine.logging.GameLogger;
+import fr.dwightstudio.dsengine.events.types.Event;
+import fr.dwightstudio.dsengine.inputs.KeyboardListener;
+import fr.dwightstudio.dsengine.inputs.MouseListener;
+import fr.dwightstudio.dsengine.logging.GameLogger;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

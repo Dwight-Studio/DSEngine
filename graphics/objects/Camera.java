@@ -6,10 +6,10 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package fr.dwightstudio.dpt.DSEngine.graphics.objects;
+package fr.dwightstudio.dsengine.graphics.objects;
 
-import fr.dwightstudio.dpt.DSEngine.graphics.GLFWWindow;
-import fr.dwightstudio.dpt.DSEngine.logging.GameLogger;
+import fr.dwightstudio.dsengine.graphics.GLFWWindow;
+import fr.dwightstudio.dsengine.logging.GameLogger;
 import org.joml.Matrix4f;
 import org.joml.Vector2f;
 import org.joml.Vector3f;

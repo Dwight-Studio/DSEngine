@@ -6,13 +6,13 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package fr.dwightstudio.dpt.DSEngine.graphics.utils;
+package fr.dwightstudio.dsengine.graphics.utils;
 
-import fr.dwightstudio.dpt.DSEngine.graphics.objects.SpriteTexture;
-import fr.dwightstudio.dpt.DSEngine.graphics.objects.Spritesheet;
-import fr.dwightstudio.dpt.DSEngine.graphics.objects.Texture;
-import fr.dwightstudio.dpt.DSEngine.logging.GameLogger;
-import fr.dwightstudio.dpt.DSEngine.resources.ResourceManager;
+import fr.dwightstudio.dsengine.graphics.objects.SpriteTexture;
+import fr.dwightstudio.dsengine.graphics.objects.Spritesheet;
+import fr.dwightstudio.dsengine.graphics.objects.Texture;
+import fr.dwightstudio.dsengine.logging.GameLogger;
+import fr.dwightstudio.dsengine.resources.ResourceManager;
 import org.joml.Vector2f;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;

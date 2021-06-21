@@ -6,10 +6,10 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package fr.dwightstudio.dpt.DSEngine.scripting;
+package fr.dwightstudio.dsengine.scripting;
 
-import fr.dwightstudio.dpt.DSEngine.graphics.objects.Transform;
-import fr.dwightstudio.dpt.DSEngine.logging.GameLogger;
+import fr.dwightstudio.dsengine.graphics.objects.Transform;
+import fr.dwightstudio.dsengine.logging.GameLogger;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;

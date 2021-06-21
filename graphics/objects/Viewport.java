@@ -6,9 +6,9 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package fr.dwightstudio.dpt.DSEngine.graphics.objects;
+package fr.dwightstudio.dsengine.graphics.objects;
 
-import fr.dwightstudio.dpt.DSEngine.scripting.Scene;
+import fr.dwightstudio.dsengine.scripting.Scene;
 
 public class Viewport extends Framebuffer {
 

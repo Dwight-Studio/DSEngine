@@ -6,13 +6,13 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package fr.dwightstudio.dpt.DSEngine.graphics.objects;
+package fr.dwightstudio.dsengine.graphics.objects;
 
-import fr.dwightstudio.dpt.DSEngine.graphics.GLFWWindow;
-import fr.dwightstudio.dpt.DSEngine.graphics.utils.FramebufferManager;
-import fr.dwightstudio.dpt.DSEngine.logging.GameLogger;
-import fr.dwightstudio.dpt.DSEngine.resources.ResourceManager;
-import fr.dwightstudio.dpt.DSEngine.scripting.Component;
+import fr.dwightstudio.dsengine.graphics.GLFWWindow;
+import fr.dwightstudio.dsengine.graphics.utils.FramebufferManager;
+import fr.dwightstudio.dsengine.logging.GameLogger;
+import fr.dwightstudio.dsengine.resources.ResourceManager;
+import fr.dwightstudio.dsengine.scripting.Component;
 import org.joml.Vector2f;
 
 import java.text.MessageFormat;

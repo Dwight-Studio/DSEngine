@@ -6,7 +6,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package fr.dwightstudio.dpt.DSEngine.events.types;
+package fr.dwightstudio.dsengine.events.types;
 
 /**
  * Base Event class

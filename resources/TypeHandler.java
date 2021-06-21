@@ -6,7 +6,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package fr.dwightstudio.dpt.DSEngine.resources;
+package fr.dwightstudio.dsengine.resources;
 
 public interface TypeHandler<T> {
 

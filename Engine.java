@@ -6,9 +6,9 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package fr.dwightstudio.dpt.DSEngine;
+package fr.dwightstudio.dsengine;
 
-import fr.dwightstudio.dpt.DSEngine.graphics.objects.Color;
+import fr.dwightstudio.dsengine.graphics.objects.Color;
 
 public class Engine {
     public static final long FULLSCREEN = 0;

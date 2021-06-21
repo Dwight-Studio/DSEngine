@@ -6,12 +6,12 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package fr.dwightstudio.dpt.DSEngine.scripting;
+package fr.dwightstudio.dsengine.scripting;
 
-import fr.dwightstudio.dpt.DSEngine.graphics.objects.Camera;
-import fr.dwightstudio.dpt.DSEngine.graphics.objects.Color;
-import fr.dwightstudio.dpt.DSEngine.graphics.renderers.RendererHelper;
-import fr.dwightstudio.dpt.DSEngine.graphics.utils.SceneManager;
+import fr.dwightstudio.dsengine.graphics.objects.Camera;
+import fr.dwightstudio.dsengine.graphics.objects.Color;
+import fr.dwightstudio.dsengine.graphics.renderers.RendererHelper;
+import fr.dwightstudio.dsengine.graphics.utils.SceneManager;
 import org.joml.Vector2f;
 
 import java.util.ArrayList;

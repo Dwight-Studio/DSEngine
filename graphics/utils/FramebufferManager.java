@@ -6,9 +6,9 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package fr.dwightstudio.dpt.DSEngine.graphics.utils;
+package fr.dwightstudio.dsengine.graphics.utils;
 
-import fr.dwightstudio.dpt.DSEngine.graphics.objects.Framebuffer;
+import fr.dwightstudio.dsengine.graphics.objects.Framebuffer;
 
 import java.util.ArrayList;
 import java.util.List;

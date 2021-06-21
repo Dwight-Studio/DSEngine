@@ -6,17 +6,17 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package fr.dwightstudio.dpt.DSEngine.graphics.gui;
+package fr.dwightstudio.dsengine.graphics.gui;
 
-import fr.dwightstudio.dpt.DSEngine.events.EventSystem;
-import fr.dwightstudio.dpt.DSEngine.events.types.gui.button.ButtonClickEvent;
-import fr.dwightstudio.dpt.DSEngine.events.types.gui.button.ButtonHoverEvent;
-import fr.dwightstudio.dpt.DSEngine.events.types.gui.button.ButtonReleaseEvent;
-import fr.dwightstudio.dpt.DSEngine.events.types.gui.button.ButtonUnhoverEvent;
-import fr.dwightstudio.dpt.DSEngine.graphics.objects.Color;
-import fr.dwightstudio.dpt.DSEngine.graphics.objects.Spritesheet;
-import fr.dwightstudio.dpt.DSEngine.graphics.primitives.Surface;
-import fr.dwightstudio.dpt.DSEngine.inputs.MouseListener;
+import fr.dwightstudio.dsengine.events.EventSystem;
+import fr.dwightstudio.dsengine.events.types.gui.button.ButtonClickEvent;
+import fr.dwightstudio.dsengine.events.types.gui.button.ButtonHoverEvent;
+import fr.dwightstudio.dsengine.events.types.gui.button.ButtonReleaseEvent;
+import fr.dwightstudio.dsengine.events.types.gui.button.ButtonUnhoverEvent;
+import fr.dwightstudio.dsengine.graphics.objects.Color;
+import fr.dwightstudio.dsengine.graphics.objects.Spritesheet;
+import fr.dwightstudio.dsengine.graphics.primitives.Surface;
+import fr.dwightstudio.dsengine.inputs.MouseListener;
 import org.joml.Vector2f;
 
 import java.util.HashSet;

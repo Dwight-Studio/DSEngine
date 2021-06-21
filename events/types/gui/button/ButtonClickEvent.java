@@ -6,9 +6,9 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package fr.dwightstudio.dpt.DSEngine.events.types.gui.button;
+package fr.dwightstudio.dsengine.events.types.gui.button;
 
-import fr.dwightstudio.dpt.DSEngine.graphics.gui.Button;
+import fr.dwightstudio.dsengine.graphics.gui.Button;
 
 /**
  * Event fired when a Button is clicked

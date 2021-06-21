@@ -6,14 +6,14 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package fr.dwightstudio.dpt.DSEngine.graphics.renderers;
+package fr.dwightstudio.dsengine.graphics.renderers;
 
-import fr.dwightstudio.dpt.DSEngine.graphics.objects.Shader;
-import fr.dwightstudio.dpt.DSEngine.graphics.objects.Texture;
-import fr.dwightstudio.dpt.DSEngine.graphics.objects.Transform;
-import fr.dwightstudio.dpt.DSEngine.graphics.primitives.Surface;
-import fr.dwightstudio.dpt.DSEngine.graphics.utils.SceneManager;
-import fr.dwightstudio.dpt.DSEngine.resources.ResourceManager;
+import fr.dwightstudio.dsengine.graphics.objects.Shader;
+import fr.dwightstudio.dsengine.graphics.objects.Texture;
+import fr.dwightstudio.dsengine.graphics.objects.Transform;
+import fr.dwightstudio.dsengine.graphics.primitives.Surface;
+import fr.dwightstudio.dsengine.graphics.utils.SceneManager;
+import fr.dwightstudio.dsengine.resources.ResourceManager;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;

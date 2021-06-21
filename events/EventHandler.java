@@ -6,7 +6,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package fr.dwightstudio.dpt.DSEngine.events;
+package fr.dwightstudio.dsengine.events;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

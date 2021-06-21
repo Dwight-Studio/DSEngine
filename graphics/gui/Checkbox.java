@@ -6,10 +6,10 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package fr.dwightstudio.dpt.DSEngine.graphics.gui;
+package fr.dwightstudio.dsengine.graphics.gui;
 
-import fr.dwightstudio.dpt.DSEngine.graphics.objects.Color;
-import fr.dwightstudio.dpt.DSEngine.graphics.objects.Spritesheet;
+import fr.dwightstudio.dsengine.graphics.objects.Color;
+import fr.dwightstudio.dsengine.graphics.objects.Spritesheet;
 import org.joml.Vector2f;
 
 public class Checkbox extends Button {
