@@ -24,6 +24,9 @@ public class AudioEngine {
 
     public AudioEngine() { }
 
+    /**
+     * Initialize the Audio Engine with the default playback device
+     */
     public void init() {
         GameLogger.getLogger("Audio").debug(MessageFormat.format("{0}", alcGetString(0, ALC_DEFAULT_DEVICE_SPECIFIER)));
         audioDevice = alcOpenDevice(alcGetString(0, ALC_DEFAULT_DEVICE_SPECIFIER));
@@ -35,10 +38,13 @@ public class AudioEngine {
         ALCapabilities alCapabilities = AL.createCapabilities(alcCapabilities);
 
         if (!alCapabilities.OpenAL10) {
-            GameLogger.getLogger("Audio").fatal("Audio library not supported");
+            GameLogger.getLogger("Audio").fatal("OpenAL is not supported on your machine!");
         }
     }
 
+    /**
+     * Destroy the audio context and close the used device
+     */
     public void destroy() {
         alcDestroyContext(audioContext);
         alcCloseDevice(audioDevice);

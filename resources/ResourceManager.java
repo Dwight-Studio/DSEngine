@@ -8,6 +8,7 @@
 
 package fr.dwightstudio.dsengine.resources;
 
+import fr.dwightstudio.dsengine.audio.objects.Sound;
 import fr.dwightstudio.dsengine.graphics.objects.Shader;
 import fr.dwightstudio.dsengine.graphics.objects.Spritesheet;
 import fr.dwightstudio.dsengine.graphics.objects.Texture;
@@ -27,6 +28,7 @@ public class ResourceManager {
         addHandler(Texture.class, new TextureHandler());
         addHandler(Shader.class, new ShaderHandler());
         addHandler(Spritesheet.class, new SpritesheetHandler());
+        addHandler(Sound.class, new SoundHandler());
     }
 
     /**

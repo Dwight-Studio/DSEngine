@@ -147,7 +147,7 @@ public class Checkbox extends Button {
     }
 
     /**
-     * @return the current state of this Checkbox
+     * @return true if the Checkbox is checked otherwise false
      */
     public boolean getState() {
         return state;
