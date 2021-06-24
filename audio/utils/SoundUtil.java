@@ -1,5 +1,6 @@
 package fr.dwightstudio.dsengine.audio.utils;
 
+import fr.dwightstudio.dsengine.Engine;
 import fr.dwightstudio.dsengine.audio.objects.Sound;
 import fr.dwightstudio.dsengine.logging.GameLogger;
 
@@ -21,6 +22,7 @@ public class SoundUtil {
      * @param filepath the sound location
      * @return the newly created Sound object
      */
+    // TODO: Only OGG-Vorbis format is supported
     public static Sound loadSound(String filepath) {
         stackPush();
         IntBuffer channelBuffer = stackMallocInt(1);
@@ -51,9 +53,9 @@ public class SoundUtil {
 
         int sourceID = alGenSources();
         alSourcei(sourceID, AL_BUFFER, bufferID);
-        alSourcei(sourceID, AL_LOOPING, 0);
+        alSourcei(sourceID, AL_LOOPING, Engine.SOUND.getDefaultLoopingState() ? 1 : 0);
         alSourcei(sourceID, AL_POSITION, 0);
-        alSourcef(sourceID, AL_GAIN, 0.3f);
+        alSourcef(sourceID, AL_GAIN, Engine.SOUND.getDefaultSoundGain());
 
         free(rawAudioBuffer);
         GameLogger.getLogger("SoundUtil").debug(MessageFormat.format("Successfully loaded Sound : {0}", filepath));
@@ -68,47 +70,5 @@ public class SoundUtil {
     public static void delete(Sound sound) {
         alDeleteBuffers(sound.getBufferID());
         alDeleteSources(sound.getSourceID());
-    }
-
-    /**
-     * Play a Sound
-     *
-     * @param sound the Sound to play
-     * @param loop whether the Sound should loop or not
-     */
-    public static void play(Sound sound, boolean loop) {
-        alSourcei(sound.getSourceID(), AL_LOOPING, loop ? 1 : 0);
-        alSourcePlay(sound.getSourceID());
-        sound.setState(true);
-    }
-
-    /**
-     * Stop a Sound playback
-     *
-     * @param sound the Sound to stop
-     */
-    public static void stop(Sound sound) {
-        alSourceStop(sound.getSourceID());
-        sound.setState(false);
-    }
-
-    /**
-     * Change the gain of the specified Sound object
-     *
-     * @param sound the Sound object
-     * @param gain the new gain for the Sound
-     */
-    public static void gain(Sound sound, float gain) {
-        alSourcef(sound.getSourceID(), AL_GAIN, gain);
-    }
-
-    /**
-     * Change the pitch of the specified Sound object
-     *
-     * @param sound the Sound object
-     * @param pitch the new pitch for the Sound
-     */
-    public static void pitch(Sound sound, float pitch) {
-        alSourcef(sound.getSourceID(), AL_PITCH, pitch);
     }
 }

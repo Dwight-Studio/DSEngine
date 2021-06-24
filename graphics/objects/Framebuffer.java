@@ -41,38 +41,16 @@ public class Framebuffer extends Component {
      *
      * @param x the X position
      * @param y the Y position
-     * @param baseWidth the base width
-     * @param baseHeight the base height
+     * @param width the width
+     * @param height the height
      */
-    public Framebuffer(int x, int y, int baseWidth, int baseHeight) {
+    public Framebuffer(int x, int y, int width, int height) {
         this.x = x;
         this.y = y;
-        this.baseWidth = baseWidth;
-        this.baseHeight = baseHeight;
-        this.scaleX = baseWidth;
-        this.scaleY = baseHeight;
-        ResourceManager.load("./src/main/resources/shaders/framebuffer.glsl", Shader.class);
-        this.shader = ResourceManager.get("./src/main/resources/shaders/framebuffer.glsl");
-        initFramebuffer();
-    }
-
-    /**
-     * Create a new Framebuffer object
-     *
-     * @param x the X position
-     * @param y the Y position
-     * @param baseWidth the base width
-     * @param baseHeight the base height
-     * @param scaleX the X scaling
-     * @param scaleY the Y scaling
-     */
-    public Framebuffer(float x, float y, int baseWidth, int baseHeight, float scaleX, float scaleY) {
-        this.x = x;
-        this.y = y;
-        this.baseWidth = baseWidth;
-        this.baseHeight = baseHeight;
-        this.scaleX = scaleX;
-        this.scaleY = scaleY;
+        this.baseWidth = width;
+        this.baseHeight = height;
+        this.scaleX = width * 2;
+        this.scaleY = height * 2;
         ResourceManager.load("./src/main/resources/shaders/framebuffer.glsl", Shader.class);
         this.shader = ResourceManager.get("./src/main/resources/shaders/framebuffer.glsl");
         initFramebuffer();
@@ -108,7 +86,6 @@ public class Framebuffer extends Component {
     /**
      * Generate a Vertex Buffer Object for the Framebuffer to display the Texture
      */
-    // TODO: The Framebuffer default size should be the window size
     private void genVBO() {
         float renderX = x / GLFWWindow.getWidth() - 1.0f;
         float renderY = y / GLFWWindow.getHeight() - 1.0f;

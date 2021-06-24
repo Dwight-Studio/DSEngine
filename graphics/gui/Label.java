@@ -103,7 +103,7 @@ public class Label extends Component {
     public Label(String string, Font font, boolean antiAliasing, int maxNumberOfChars) {
         this.string = string;
         this.font = font;
-        this.color = Engine.COLORS.BLACK;
+        this.color = Engine.COLOR.BLACK;
         this.antiAliasing = antiAliasing;
         this.maxNumberOfChars = maxNumberOfChars;
         this.fontAtlas = FontUtils.createFontAtlas(font, antiAliasing);
@@ -155,7 +155,7 @@ public class Label extends Component {
     public Label(String string, Font font, boolean antiAliasing) {
         this.string = string;
         this.font = font;
-        this.color = Engine.COLORS.BLACK;
+        this.color = Engine.COLOR.BLACK;
         this.antiAliasing = antiAliasing;
         this.maxNumberOfChars = 1000;
         this.fontAtlas = FontUtils.createFontAtlas(font, antiAliasing);
@@ -188,7 +188,7 @@ public class Label extends Component {
      */
     public Label(String string, FontAtlas fontAtlas, int maxNumberOfChars) {
         this.string = string;
-        this.color = Engine.COLORS.BLACK;
+        this.color = Engine.COLOR.BLACK;
         this.fontAtlas = fontAtlas;
         this.antiAliasing = fontAtlas.isAntiAliasing();
         this.font = fontAtlas.getFont();
@@ -206,7 +206,7 @@ public class Label extends Component {
     public Label(String string, Font font, int maxNumberOfChars) {
         this.string = string;
         this.font = font;
-        this.color = Engine.COLORS.BLACK;
+        this.color = Engine.COLOR.BLACK;
         this.antiAliasing = false;
         this.maxNumberOfChars = maxNumberOfChars;
         this.fontAtlas = FontUtils.createFontAtlas(this.font, false);
@@ -221,7 +221,7 @@ public class Label extends Component {
      */
     public Label(String string, FontAtlas fontAtlas) {
         this.string = string;
-        this.color = Engine.COLORS.BLACK;
+        this.color = Engine.COLOR.BLACK;
         this.fontAtlas = fontAtlas;
         this.antiAliasing = fontAtlas.isAntiAliasing();
         this.font = fontAtlas.getFont();
@@ -238,7 +238,7 @@ public class Label extends Component {
     public Label(String string, Font font) {
         this.string = string;
         this.font = font;
-        this.color = Engine.COLORS.BLACK;
+        this.color = Engine.COLOR.BLACK;
         this.antiAliasing = false;
         this.maxNumberOfChars = 1000;
         this.fontAtlas = FontUtils.createFontAtlas(this.font, false);

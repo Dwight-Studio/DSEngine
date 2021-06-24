@@ -14,7 +14,7 @@ public class Engine {
     public static final long FULLSCREEN = 0;
     public static final long WINDOWED = 1;
 
-    public static class COLORS {
+    public static class COLOR {
         public static final Color RED = new Color(1.0f, 0.0f, 0.0f, 1.0f);
         public static final Color GREEN = new Color(0.0f, 1.0f, 0.0f, 1.0f);
         public static final Color BLUE = new Color(0.0f, 0.0f, 1.0f, 1.0f);
@@ -25,6 +25,26 @@ public class Engine {
         public static final Color CYAN = new Color(0.0f, 1.0f, 1.0f, 1.0f);
         public static final Color BLACK = new Color(0.0f, 0.0f, 0.0f, 1.0f);
         public static final Color WHITE = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+    }
+
+    public static class SOUND {
+        private static float defaultSoundGain = 1.0f;
+        private static boolean defaultLoopingState = false;
+
+        public static void setDefaultSoundGain(float defaultGain) {
+            defaultSoundGain = defaultGain;
+        }
+        public static float getDefaultSoundGain() {
+            return defaultSoundGain;
+        }
+
+        public static void setDefaultLoopingState(boolean looping) {
+            defaultLoopingState = looping;
+        }
+        public static boolean getDefaultLoopingState() {
+            return defaultLoopingState;
+        }
+
     }
 
 }

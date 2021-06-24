@@ -2,6 +2,9 @@ package fr.dwightstudio.dsengine.audio.objects;
 
 import fr.dwightstudio.dsengine.scripting.Component;
 
+import static org.lwjgl.openal.AL10.*;
+import static org.lwjgl.openal.AL10.AL_PITCH;
+
 public class Sound extends Component {
     private final int bufferID;
     private final int sourceID;
@@ -72,12 +75,39 @@ public class Sound extends Component {
     }
 
     /**
-     * Set the current state of the Sound
-     * Can be AL_STOPPED or AL_PLAYING
+     * Play a Sound
      *
-     * @param state true if playing otherwise false
+     * @param loop whether the Sound should loop or not
      */
-    public void setState(boolean state) {
-        playing = state;
+    public void play(boolean loop) {
+        alSourcei(sourceID, AL_LOOPING, loop ? 1 : 0);
+        alSourcePlay(sourceID);
+        playing = true;
+    }
+
+    /**
+     * Stop a Sound playback
+     */
+    public void stop() {
+        alSourceStop(sourceID);
+        playing = false;
+    }
+
+    /**
+     * Change the gain of the specified Sound object
+     *
+     * @param gain the new gain for the Sound
+     */
+    public void gain(float gain) {
+        alSourcef(sourceID, AL_GAIN, gain);
+    }
+
+    /**
+     * Change the pitch of the specified Sound object
+     *
+     * @param pitch the new pitch for the Sound
+     */
+    public void pitch(float pitch) {
+        alSourcef(sourceID, AL_PITCH, pitch);
     }
 }
