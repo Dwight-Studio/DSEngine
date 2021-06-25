@@ -71,8 +71,8 @@ public class SurfaceRenderer extends Renderers {
         this.batchSize = batchSize;
         this.zIndex = zIndex;
         m_zIndex = zIndex;
-        ResourceManager.load("./src/main/resources/shaders/default.glsl", Shader.class);
-        this.shader = ResourceManager.get("./src/main/resources/shaders/default.glsl");
+        ResourceManager.load("./src/dsengine/resources/shaders/default.glsl", Shader.class);
+        this.shader = ResourceManager.get("./src/dsengine/resources/shaders/default.glsl");
         this.vertices = new float[batchSize * 4 * VERTEX_SIZE]; // The 4 is the number of vertices per quads
         this.numberOfSurfaces = 0;
         this.hasRoom = true;

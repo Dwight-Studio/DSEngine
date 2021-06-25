@@ -30,9 +30,11 @@ public class Engine {
     public static class SOUND {
         private static float defaultSoundGain = 1.0f;
         private static boolean defaultLoopingState = false;
+        private static float defaultSoundPitch = 1.0f;
+        private static float defaultSoundPosition = 0.0f;
 
-        public static void setDefaultSoundGain(float defaultGain) {
-            defaultSoundGain = defaultGain;
+        public static void setDefaultSoundGain(float gain) {
+            defaultSoundGain = gain;
         }
         public static float getDefaultSoundGain() {
             return defaultSoundGain;
@@ -45,6 +47,19 @@ public class Engine {
             return defaultLoopingState;
         }
 
+        public static void setDefaultSoundPitch(float pitch) {
+            defaultSoundPitch = pitch;
+        }
+        public static float getDefaultSoundPitch() {
+            return defaultSoundPitch;
+        }
+
+        public static void setDefaultSoundPosition(float position) {
+            defaultSoundPosition = position;
+        }
+        public static float getDefaultSoundPosition() {
+            return defaultSoundPosition;
+        }
     }
 
 }

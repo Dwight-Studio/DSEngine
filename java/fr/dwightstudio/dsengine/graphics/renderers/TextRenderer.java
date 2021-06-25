@@ -56,8 +56,8 @@ public class TextRenderer extends Renderers {
         this.label = label;
         this.fontAtlas = label.getFontAtlas();
         this.characters = label.getText().toCharArray();
-        ResourceManager.load("./src/main/resources/shaders/text.glsl", Shader.class);
-        this.shader = ResourceManager.get("./src/main/resources/shaders/text.glsl");
+        ResourceManager.load("./src/dsengine/resources/shaders/text.glsl", Shader.class);
+        this.shader = ResourceManager.get("./src/dsengine/resources/shaders/text.glsl");
         this.zindex = zindex;
         m_zIndex = zindex;
 
