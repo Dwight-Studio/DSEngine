@@ -1,5 +1,6 @@
 package fr.dwightstudio.dsengine.audio.objects;
 
+import fr.dwightstudio.dsengine.Engine;
 import fr.dwightstudio.dsengine.scripting.Component;
 
 import static org.lwjgl.openal.AL10.*;
@@ -75,7 +76,17 @@ public class Sound extends Component {
     }
 
     /**
-     * Play a Sound
+     * Play the Sound
+     * If you modified whether the Sound should loop or not, you should be careful to either reset the Sound
+     * or specify if the sound should loop.
+     */
+    public void play() {
+        alSourcePlay(sourceID);
+        playing = true;
+    }
+
+    /**
+     * Play the Sound
      *
      * @param loop whether the Sound should loop or not
      */
@@ -86,7 +97,7 @@ public class Sound extends Component {
     }
 
     /**
-     * Stop a Sound playback
+     * Stop the Sound playback
      */
     public void stop() {
         alSourceStop(sourceID);
@@ -94,7 +105,7 @@ public class Sound extends Component {
     }
 
     /**
-     * Change the gain of the specified Sound object
+     * Change the gain of the Sound
      *
      * @param gain the new gain for the Sound
      */
@@ -103,11 +114,22 @@ public class Sound extends Component {
     }
 
     /**
-     * Change the pitch of the specified Sound object
+     * Change the pitch of the Sound
      *
      * @param pitch the new pitch for the Sound
      */
     public void pitch(float pitch) {
         alSourcef(sourceID, AL_PITCH, pitch);
+    }
+
+    /**
+     * Reset the Sound to Engine default parameters.
+     * You can change the default engine parameters to change the behavior of this reset method.
+     */
+    public void reset() {
+        alSourcef(sourceID, AL_GAIN, Engine.SOUND.getDefaultSoundGain());
+        alSourcef(sourceID, AL_PITCH, 1.0f); // FIXME: Hardcoded value
+        alSourcei(sourceID, AL_LOOPING, Engine.SOUND.getDefaultLoopingState() ? 1 : 0);
+        alSourcef(sourceID, AL_POSITION, 0); // FIXME: Hardcoded value
     }
 }
