@@ -226,8 +226,8 @@ public class SurfaceRenderer extends Renderers {
             }
         }
 
-        float x = -surface.getCenterPoint().x + surface.getTransform().scale.x + surface.gameObject.getTransform().scale.x;
-        float y = -surface.getCenterPoint().y + surface.getTransform().scale.y + surface.gameObject.getTransform().scale.y;
+        float x = -surface.getCenterPoint().x + surface.getTransform().scale.x + surface.renderGroup.getTransform().scale.x;
+        float y = -surface.getCenterPoint().y + surface.getTransform().scale.y + surface.renderGroup.getTransform().scale.y;
         // This will loop 4 times for the 4 vertices.
         for (int i = 0; i < 4; i++) {
             if (i == 1) {
@@ -235,12 +235,12 @@ public class SurfaceRenderer extends Renderers {
             } else if (i == 2) {
                 x = -surface.getCenterPoint().x;
             } else if (i == 3) {
-                y = -surface.getCenterPoint().y + surface.getTransform().scale.y + surface.gameObject.getTransform().scale.y;
+                y = -surface.getCenterPoint().y + surface.getTransform().scale.y + surface.renderGroup.getTransform().scale.y;
             }
 
             // Load the position
-            vertices[offset] = (x * (float) Math.cos(surface.getTransform().getRotation(Transform.RADIAN)) - y * (float) Math.sin(surface.getTransform().getRotation(Transform.RADIAN))) + surface.getCenterPoint().x + surface.getTransform().position.x + surface.gameObject.getTransform().position.x;
-            vertices[offset + 1] = (x * (float) Math.sin(surface.getTransform().getRotation(Transform.RADIAN)) + y * (float) Math.cos(surface.getTransform().getRotation(Transform.RADIAN))) + surface.getCenterPoint().y + surface.getTransform().position.y + surface.gameObject.getTransform().position.y;
+            vertices[offset] = (x * (float) Math.cos(surface.getTransform().getRotation(Transform.RADIAN)) - y * (float) Math.sin(surface.getTransform().getRotation(Transform.RADIAN))) + surface.getCenterPoint().x + surface.getTransform().position.x + surface.renderGroup.getTransform().position.x;
+            vertices[offset + 1] = (x * (float) Math.sin(surface.getTransform().getRotation(Transform.RADIAN)) + y * (float) Math.cos(surface.getTransform().getRotation(Transform.RADIAN))) + surface.getCenterPoint().y + surface.getTransform().position.y + surface.renderGroup.getTransform().position.y;
 
             // Load the color
             vertices[offset + 2] = surface.getColor().getRed();

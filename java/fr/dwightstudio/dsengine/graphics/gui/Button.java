@@ -106,8 +106,8 @@ public class Button extends Surface {
      */
     private void checkButtonClick() {
         if (MouseListener.isButtonPressed(0)) {
-            if (MouseListener.getOrthoCursorPos().x >= this.getTransform().position.x + this.gameObject.getTransform().position.x && MouseListener.getOrthoCursorPos().x <= this.getTransform().position.x + this.gameObject.getTransform().position.x + this.getTransform().scale.x + this.gameObject.getTransform().scale.x) {
-                if (MouseListener.getOrthoCursorPos().y >= this.getTransform().position.y + this.gameObject.getTransform().position.y && MouseListener.getOrthoCursorPos().y <= this.getTransform().position.y + this.gameObject.getTransform().position.y + this.getTransform().scale.y + this.gameObject.getTransform().scale.y) {
+            if (MouseListener.getOrthoCursorPos().x >= this.getTransform().position.x + this.renderGroup.getTransform().position.x && MouseListener.getOrthoCursorPos().x <= this.getTransform().position.x + this.renderGroup.getTransform().position.x + this.getTransform().scale.x + this.renderGroup.getTransform().scale.x) {
+                if (MouseListener.getOrthoCursorPos().y >= this.getTransform().position.y + this.renderGroup.getTransform().position.y && MouseListener.getOrthoCursorPos().y <= this.getTransform().position.y + this.renderGroup.getTransform().position.y + this.getTransform().scale.y + this.renderGroup.getTransform().scale.y) {
                     this.setClicked(true);
                     return;
                 }
@@ -120,8 +120,8 @@ public class Button extends Surface {
      * Check if the user hover this button
      */
     private void checkButtonHover() {
-        if (MouseListener.getOrthoCursorPos().x >= this.getTransform().position.x + this.gameObject.getTransform().position.x && MouseListener.getOrthoCursorPos().x <= this.getTransform().position.x + this.gameObject.getTransform().position.x + this.getTransform().scale.x + this.gameObject.getTransform().scale.x) {
-            if (MouseListener.getOrthoCursorPos().y >= this.getTransform().position.y + this.gameObject.getTransform().position.y && MouseListener.getOrthoCursorPos().y <= this.getTransform().position.y + this.gameObject.getTransform().position.y + this.getTransform().scale.y + this.gameObject.getTransform().scale.y) {
+        if (MouseListener.getOrthoCursorPos().x >= this.getTransform().position.x + this.renderGroup.getTransform().position.x && MouseListener.getOrthoCursorPos().x <= this.getTransform().position.x + this.renderGroup.getTransform().position.x + this.getTransform().scale.x + this.renderGroup.getTransform().scale.x) {
+            if (MouseListener.getOrthoCursorPos().y >= this.getTransform().position.y + this.renderGroup.getTransform().position.y && MouseListener.getOrthoCursorPos().y <= this.getTransform().position.y + this.renderGroup.getTransform().position.y + this.getTransform().scale.y + this.renderGroup.getTransform().scale.y) {
                 this.setHover(true);
                 return;
             }

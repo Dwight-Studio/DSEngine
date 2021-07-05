@@ -14,6 +14,11 @@ public class Engine {
     public static final long FULLSCREEN = 0;
     public static final long WINDOWED = 1;
 
+    public static class GUI {
+        public static final int HORIZONTAL = 2;
+        public static final int VERTICAL = 3;
+    }
+
     public static class COLOR {
         public static final Color RED = new Color(1.0f, 0.0f, 0.0f, 1.0f);
         public static final Color GREEN = new Color(0.0f, 1.0f, 0.0f, 1.0f);

@@ -148,8 +148,8 @@ public class TextRenderer extends Renderers {
         int offset = index * 4 * VERTEX_SIZE;
 
         // TODO: The text is not scaling uniformly
-        float x = this.cursorPosition + this.fontAtlas.getGlyph(character).getWidth() + this.label.getTransform().scale.x + this.label.gameObject.getTransform().scale.x;
-        float y = this.label.getTransform().position.y +  this.fontAtlas.getGlyph(character).getHeight() + this.label.getTransform().scale.y + this.label.gameObject.getTransform().scale.y;
+        float x = this.cursorPosition + this.fontAtlas.getGlyph(character).getWidth() + this.label.getTransform().scale.x + this.label.renderGroup.getTransform().scale.x;
+        float y = this.label.getTransform().position.y +  this.fontAtlas.getGlyph(character).getHeight() + this.label.getTransform().scale.y + this.label.renderGroup.getTransform().scale.y;
         // This will loop 4 times for the 4 vertices.
         for (int i = 0; i < 4; i++) {
             if (i == 1) {
@@ -157,12 +157,12 @@ public class TextRenderer extends Renderers {
             } else if (i == 2) {
                 x = this.cursorPosition;
             } else if (i == 3) {
-                y = this.label.getTransform().position.y + this.fontAtlas.getGlyph(character).getHeight() +  + this.label.getTransform().scale.y + this.label.gameObject.getTransform().scale.y;
+                y = this.label.getTransform().position.y + this.fontAtlas.getGlyph(character).getHeight() +  + this.label.getTransform().scale.y + this.label.renderGroup.getTransform().scale.y;
             }
 
             // Load the position
-            vertices[offset] = x + this.label.gameObject.getTransform().position.x;
-            vertices[offset + 1] = y + this.label.gameObject.getTransform().position.y;
+            vertices[offset] = x + this.label.renderGroup.getTransform().position.x;
+            vertices[offset + 1] = y + this.label.renderGroup.getTransform().position.y;
 
             // Load the color
             vertices[offset + 2] = this.label.getColor().getRed();
@@ -175,7 +175,7 @@ public class TextRenderer extends Renderers {
 
             offset += VERTEX_SIZE;
         }
-        this.cursorPosition += this.fontAtlas.getGlyph(character).getWidth() + this.label.getTransform().scale.x + this.label.gameObject.getTransform().scale.x;
+        this.cursorPosition += this.fontAtlas.getGlyph(character).getWidth() + this.label.getTransform().scale.x + this.label.renderGroup.getTransform().scale.x;
     }
 
     /**

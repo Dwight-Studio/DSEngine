@@ -15,7 +15,7 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameObject {
+public class RenderGroup {
 
     // TODO: Transform rotatino support
     private final String name;
@@ -27,71 +27,71 @@ public class GameObject {
     private boolean dirty = true;
 
     /**
-     * Create a GameObject
-     * A GameObject can contain an unlimited amount of Component objects
+     * Create a RenderGroup
+     * A RenderGroup can contain an unlimited amount of Component objects
      *
-     * @param name the GameObject name
+     * @param name the RenderGroup name
      */
-    public GameObject(String name) {
+    public RenderGroup(String name) {
         this.name = name;
         this.components = new ArrayList<>();
         this.transform = new Transform();
         this.lastTransform = new Transform();
         this.zIndex = 0;
-        GameLogger.getLogger("GameObject").debug(MessageFormat.format("Created GameObject : \"{0}\"", name));
+        GameLogger.getLogger("RenderGroup").debug(MessageFormat.format("Created RenderGroup : \"{0}\"", name));
     }
 
     /**
-     * Create a GameObject
-     * A GameObject can contain an unlimited amount of Component objects
+     * Create a RenderGroup
+     * A RenderGroup can contain an unlimited amount of Component objects
      *
-     * @param name the GameObject name
-     * @param transform the GameObject position
+     * @param name the RenderGroup name
+     * @param transform the RenderGroup position
      */
-    public GameObject(String name, Transform transform) {
+    public RenderGroup(String name, Transform transform) {
         this.name = name;
         this.components = new ArrayList<>();
         this.transform = transform;
         this.lastTransform = new Transform();
         this.zIndex = 0;
-        GameLogger.getLogger("GameObject").debug(MessageFormat.format("Create GameObject : \"{0}\"", name));
+        GameLogger.getLogger("RenderGroup").debug(MessageFormat.format("Create RenderGroup : \"{0}\"", name));
     }
 
     /**
-     * Create a GameObject
-     * A GameObject can contain an unlimited amount of Component objects
+     * Create a RenderGroup
+     * A RenderGroup can contain an unlimited amount of Component objects
      *
-     * @param name the GameObject name
-     * @param zIndex the GameObject Z level
+     * @param name the RenderGroup name
+     * @param zIndex the RenderGroup Z level
      */
-    public GameObject(String name, int zIndex) {
+    public RenderGroup(String name, int zIndex) {
         this.name = name;
         this.components = new ArrayList<>();
         this.transform = new Transform();
         this.lastTransform = new Transform();
         this.zIndex = zIndex;
-        GameLogger.getLogger("GameObject").debug(MessageFormat.format("Create GameObject : \"{0}\" with zIndex : {1}", name, zIndex));
+        GameLogger.getLogger("RenderGroup").debug(MessageFormat.format("Create RenderGroup : \"{0}\" with zIndex : {1}", name, zIndex));
     }
 
     /**
-     * Create a GameObject
-     * A GameObject can contain an unlimited amount of Component objects
+     * Create a RenderGroup
+     * A RenderGroup can contain an unlimited amount of Component objects
      *
-     * @param name the GameObject name
-     * @param transform the GameObject transform
-     * @param zIndex the GameObject Z level
+     * @param name the RenderGroup name
+     * @param transform the RenderGroup transform
+     * @param zIndex the RenderGroup Z level
      */
-    public GameObject(String name, Transform transform, int zIndex) {
+    public RenderGroup(String name, Transform transform, int zIndex) {
         this.name = name;
         this.components = new ArrayList<>();
         this.transform = transform;
         this.lastTransform = new Transform();
         this.zIndex = zIndex;
-        GameLogger.getLogger("GameObject").debug(MessageFormat.format("Create GameObject : \"{0}\" with zIndex : {1}", name, zIndex));
+        GameLogger.getLogger("RenderGroup").debug(MessageFormat.format("Create RenderGroup : \"{0}\" with zIndex : {1}", name, zIndex));
     }
 
     /**
-     * You will get the first element searched of the GameObject
+     * You will get the first element searched of the RenderGroup
      *
      * @param componentClass the component class
      * @return the component
@@ -129,7 +129,7 @@ public class GameObject {
     }
 
     /**
-     * Remove a component from the GameObject
+     * Remove a component from the RenderGroup
      * The component which is deleted will call the remove method if it has one
      *
      * @param component the component to remove
@@ -140,24 +140,26 @@ public class GameObject {
     }
 
     /**
-     * Add a component to the GameObject
+     * Add a component to the RenderGroup
      *
      * @param component the component to add
      */
     public void addComponent(Component component) {
         this.components.add(component);
-        component.gameObject = this;
+        component.renderGroup = this;
+        component.addComponent();
     }
 
     /**
-     * Add multiple components to the GameObject
+     * Add multiple components to the RenderGroup
      *
      * @param components the components array to add
      */
     public void addComponents(Component[] components) {
         for (Component component : components) {
             this.components.add(component);
-            component.gameObject = this;
+            component.renderGroup = this;
+            component.addComponent();
         }
     }
 
@@ -182,7 +184,7 @@ public class GameObject {
 
     /**
      * Initialize all the components
-     * This method is called when a Scene is initialized or when you add a GameObject to a Scene
+     * This method is called when a Scene is initialized or when you add a RenderGroup to a Scene
      */
     public void init() {
         for (Component component : components) {
@@ -191,21 +193,21 @@ public class GameObject {
     }
 
     /**
-     * @return the name of the GameObject
+     * @return the name of the RenderGroup
      */
     public String getName() {
         return name;
     }
 
     /**
-     * @return the Transform object of this GameObject
+     * @return the Transform object of this RenderGroup
      */
     public Transform getTransform() {
         return this.transform;
     }
 
     /**
-     * @return the Z level of this GameObject
+     * @return the Z level of this RenderGroup
      */
     public int getzIndex() {
         return zIndex;
