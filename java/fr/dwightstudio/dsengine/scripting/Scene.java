@@ -23,7 +23,7 @@ public abstract class Scene {
 
     protected Camera camera;
     private boolean isRunning = false;
-    protected List<GameObject> gameObjects = new ArrayList<>();
+    protected List<RenderGroup> renderGroups = new ArrayList<>();
     protected RendererHelper rendererHelper = new RendererHelper();
 
     /**
@@ -37,12 +37,12 @@ public abstract class Scene {
 
     /**
      * Initialize the Scene
-     * This will initialize all the GameObject
+     * This will initialize all the RenderGroup
      */
     public void start() {
-        for (GameObject gameObject : gameObjects) {
-            gameObject.init();
-            rendererHelper.addGameObject(gameObject);
+        for (RenderGroup renderGroup : renderGroups) {
+            renderGroup.init();
+            rendererHelper.addGameObject(renderGroup);
         }
     }
 
@@ -51,8 +51,8 @@ public abstract class Scene {
     }
 
     public void update(double dt) {
-        for (GameObject gameObject : this.gameObjects) {
-            gameObject.update(dt);
+        for (RenderGroup renderGroup : this.renderGroups) {
+            renderGroup.update(dt);
         }
         if (SceneManager.getCurrentScene() == this) {
             render();
@@ -64,17 +64,17 @@ public abstract class Scene {
     }
 
     /**
-     * Add a GameObject to the Scene
+     * Add a RenderGroup to the Scene
      *
-     * @param gameObject the GameObject to add
+     * @param renderGroup the RenderGroup to add
      */
-    public void addGameObject(GameObject gameObject) {
+    public void addGameObject(RenderGroup renderGroup) {
         if (!isRunning) {
-            gameObjects.add(gameObject);
+            renderGroups.add(renderGroup);
         } else {
-            gameObjects.add(gameObject);
-            gameObject.init();
-            rendererHelper.addGameObject(gameObject);
+            renderGroups.add(renderGroup);
+            renderGroup.init();
+            rendererHelper.addGameObject(renderGroup);
         }
     }
 

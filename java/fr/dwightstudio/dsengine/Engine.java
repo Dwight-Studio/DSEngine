@@ -14,6 +14,11 @@ public class Engine {
     public static final long FULLSCREEN = 0;
     public static final long WINDOWED = 1;
 
+    public static class GUI {
+        public static final int HORIZONTAL = 2;
+        public static final int VERTICAL = 3;
+    }
+
     public static class COLOR {
         public static final Color RED = new Color(1.0f, 0.0f, 0.0f, 1.0f);
         public static final Color GREEN = new Color(0.0f, 1.0f, 0.0f, 1.0f);
@@ -30,9 +35,11 @@ public class Engine {
     public static class SOUND {
         private static float defaultSoundGain = 1.0f;
         private static boolean defaultLoopingState = false;
+        private static float defaultSoundPitch = 1.0f;
+        private static float defaultSoundPosition = 0.0f;
 
-        public static void setDefaultSoundGain(float defaultGain) {
-            defaultSoundGain = defaultGain;
+        public static void setDefaultSoundGain(float gain) {
+            defaultSoundGain = gain;
         }
         public static float getDefaultSoundGain() {
             return defaultSoundGain;
@@ -45,6 +52,19 @@ public class Engine {
             return defaultLoopingState;
         }
 
+        public static void setDefaultSoundPitch(float pitch) {
+            defaultSoundPitch = pitch;
+        }
+        public static float getDefaultSoundPitch() {
+            return defaultSoundPitch;
+        }
+
+        public static void setDefaultSoundPosition(float position) {
+            defaultSoundPosition = position;
+        }
+        public static float getDefaultSoundPosition() {
+            return defaultSoundPosition;
+        }
     }
 
 }

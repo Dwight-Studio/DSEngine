@@ -10,7 +10,7 @@ package fr.dwightstudio.dsengine.graphics.renderers;
 
 import fr.dwightstudio.dsengine.graphics.gui.Label;
 import fr.dwightstudio.dsengine.graphics.primitives.Surface;
-import fr.dwightstudio.dsengine.scripting.GameObject;
+import fr.dwightstudio.dsengine.scripting.RenderGroup;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,18 +31,18 @@ public class RendererHelper {
     }
 
     /**
-     * Add a GameObject to be rendered in the Renderer
+     * Add a RenderGroup to be rendered in the Renderer
      *
-     * @param gameObject a GameObject
+     * @param renderGroup a RenderGroup
      */
-    public void addGameObject(GameObject gameObject) {
-        List<Surface> surfaces = gameObject.getComponents(Surface.class);
+    public void addGameObject(RenderGroup renderGroup) {
+        List<Surface> surfaces = renderGroup.getComponents(Surface.class);
         for (Surface surface : surfaces) {
             if (surface != null) {
-                add(surface, gameObject);
+                add(surface, renderGroup);
             }
         }
-        List<Label> labels = gameObject.getComponents(Label.class);
+        List<Label> labels = renderGroup.getComponents(Label.class);
         for (Label label : labels) {
             if (label.getTextRenderer() != null) {
                 this.renderers.add(label.getTextRenderer());
@@ -54,14 +54,14 @@ public class RendererHelper {
      * Add a surface to the Renderer
      *
      * @param surface a Surface
-     * @param gameObject a GameObject
+     * @param renderGroup a RenderGroup
      */
-    private void add(Surface surface, GameObject gameObject) {
+    private void add(Surface surface, RenderGroup renderGroup) {
         boolean added = false;
         for (Renderers renderer : renderers) {
             if (renderer instanceof SurfaceRenderer) {
                 SurfaceRenderer surfaceRenderer = (SurfaceRenderer) renderer;
-                if (surfaceRenderer.hasRoom() && surfaceRenderer.getzIndex() == gameObject.getzIndex()) {
+                if (surfaceRenderer.hasRoom() && surfaceRenderer.getzIndex() == renderGroup.getzIndex()) {
                     surfaceRenderer.addSurface(surface);
                     added = true;
                 }
@@ -69,7 +69,7 @@ public class RendererHelper {
         }
 
         if (!added) {
-            SurfaceRenderer surfaceRenderer = new SurfaceRenderer(maxBatchSize, gameObject.getzIndex());
+            SurfaceRenderer surfaceRenderer = new SurfaceRenderer(maxBatchSize, renderGroup.getzIndex());
             surfaceRenderer.start();
             renderers.add(surfaceRenderer);
             surfaceRenderer.addSurface(surface);

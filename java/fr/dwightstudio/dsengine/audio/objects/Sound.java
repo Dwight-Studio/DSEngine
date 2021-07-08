@@ -105,7 +105,7 @@ public class Sound extends Component {
     }
 
     /**
-     * Change the gain of the Sound
+     * Change the gain
      *
      * @param gain the new gain for the Sound
      */
@@ -114,7 +114,7 @@ public class Sound extends Component {
     }
 
     /**
-     * Change the pitch of the Sound
+     * Change the pitch
      *
      * @param pitch the new pitch for the Sound
      */
@@ -123,13 +123,22 @@ public class Sound extends Component {
     }
 
     /**
+     * Chnage the playback cursor position
+     *
+     * @param position the new position
+     */
+    public void position(float position) {
+        alSourcef(sourceID, AL_POSITION, position);
+    }
+
+    /**
      * Reset the Sound to Engine default parameters.
      * You can change the default engine parameters to change the behavior of this reset method.
      */
     public void reset() {
         alSourcef(sourceID, AL_GAIN, Engine.SOUND.getDefaultSoundGain());
-        alSourcef(sourceID, AL_PITCH, 1.0f); // FIXME: Hardcoded value
+        alSourcef(sourceID, AL_PITCH, Engine.SOUND.getDefaultSoundPitch());
         alSourcei(sourceID, AL_LOOPING, Engine.SOUND.getDefaultLoopingState() ? 1 : 0);
-        alSourcef(sourceID, AL_POSITION, 0); // FIXME: Hardcoded value
+        alSourcef(sourceID, AL_POSITION, Engine.SOUND.getDefaultSoundPosition());
     }
 }

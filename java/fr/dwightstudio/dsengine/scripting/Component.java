@@ -10,10 +10,11 @@ package fr.dwightstudio.dsengine.scripting;
 
 public abstract class Component {
 
-    public GameObject gameObject = null;
+    public RenderGroup renderGroup = null;
     private boolean gameObjectDirty = false;
 
     public void update(double dt) {}
+    public void addComponent() {}
     protected void setGameobjectDirty() {
         gameObjectDirty = true;
     }

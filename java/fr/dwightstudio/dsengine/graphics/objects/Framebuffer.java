@@ -51,8 +51,8 @@ public class Framebuffer extends Component {
         this.baseHeight = height;
         this.scaleX = width * 2;
         this.scaleY = height * 2;
-        ResourceManager.load("./src/main/resources/shaders/framebuffer.glsl", Shader.class);
-        this.shader = ResourceManager.get("./src/main/resources/shaders/framebuffer.glsl");
+        ResourceManager.load("./src/dsengine/resources/shaders/framebuffer.glsl", Shader.class);
+        this.shader = ResourceManager.get("./src/dsengine/resources/shaders/framebuffer.glsl");
         initFramebuffer();
     }
 
