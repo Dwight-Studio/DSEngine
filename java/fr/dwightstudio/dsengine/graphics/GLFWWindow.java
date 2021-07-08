@@ -45,7 +45,7 @@ public class GLFWWindow {
         GLFWWindow.WIDTH = WIDTH;
         GLFWWindow.HEIGHT = HEIGHT;
         this.windowMode = windowMode;
-        Thread.currentThread().setName("Main Render Thread");
+        Thread.currentThread().setName("Main Engine Thread");
     }
 
     /**
