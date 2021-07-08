@@ -12,18 +12,22 @@ import fr.dwightstudio.dsengine.Engine;
 import fr.dwightstudio.dsengine.graphics.objects.Color;
 import fr.dwightstudio.dsengine.graphics.primitives.Surface;
 import fr.dwightstudio.dsengine.inputs.MouseListener;
+import fr.dwightstudio.dsengine.logging.GameLogger;
 import org.joml.Vector2f;
+import org.lwjgl.opengl.GLUtil;
+
+import javax.swing.*;
 
 public class Slider extends Surface {
 
-    private float minValue;
-    private float maxValue;
+    private double minValue;
+    private double maxValue;
     private int orientation;
     private boolean selected = false;
 
     private final Surface sliderPoint;
 
-    private float currentValue;
+    private double currentValue;
 
     /**
      * Create a new Slider
@@ -38,7 +42,7 @@ public class Slider extends Surface {
         this.minValue = minValue;
         this.maxValue = maxValue;
         this.currentValue = minValue;
-        this.sliderPoint = new Surface(new Vector2f(position.x, position.y), new Vector2f(scale.y / 6, scale.y), new Color(0.0f, 0.0f, 0.0f, 0.5f));
+        this.sliderPoint = new Surface(new Vector2f(position.x, position.y), new Vector2f(scale.y / 6, scale.y), Engine.COLOR.BLACK);
         this.orientation = Engine.GUI.HORIZONTAL;
     }
 
@@ -57,11 +61,11 @@ public class Slider extends Surface {
         this.maxValue = maxValue;
         this.orientation = orientation;
         if (orientation == Engine.GUI.HORIZONTAL) {
-            this.sliderPoint = new Surface(new Vector2f(position.x, position.y), new Vector2f(scale.y / 6, scale.y), new Color(0.0f, 0.0f, 0.0f, 0.5f));
+            this.sliderPoint = new Surface(new Vector2f(position.x, position.y - (scale.y / 10) / 2), new Vector2f(scale.y / 6, scale.y + scale.y / 10), Engine.COLOR.BLACK);
         } else if (orientation == Engine.GUI.VERTICAL) {
-            this.sliderPoint = new Surface(new Vector2f(position.x, position.y), new Vector2f(scale.x, scale.x / 6), new Color(0.0f, 0.0f, 0.0f, 0.5f));
+            this.sliderPoint = new Surface(new Vector2f(position.x - (scale.x / 10) / 2, position.y), new Vector2f(scale.x + scale.x / 10, scale.x / 6), Engine.COLOR.BLACK);
         } else {
-            this.sliderPoint = new Surface(new Vector2f(position.x, position.y), new Vector2f(scale.y / 6, scale.y), new Color(0.0f, 0.0f, 0.0f, 0.5f));
+            this.sliderPoint = new Surface(new Vector2f(position.x, position.y - (scale.y / 10) / 2), new Vector2f(scale.y / 6, scale.y + scale.y / 10), Engine.COLOR.BLACK);
         }
     }
 
@@ -86,42 +90,51 @@ public class Slider extends Surface {
         // While we hold the click we can continue to move the slider point
         if (selected) {
             if (orientation == Engine.GUI.HORIZONTAL) {
-                if (sliderPoint.getTransform().position.x >= this.getTransform().position.x && sliderPoint.getTransform().position.x + sliderPoint.getTransform().scale.x <= this.getTransform().position.x + this.getTransform().scale.x) {
+                if (sliderPoint.getTransform().position.x + sliderPoint.getTransform().scale.x / 2 >= this.getTransform().position.x) {
                     sliderPoint.getTransform().position.x = MouseListener.getOrthoCursorPos().x - (sliderPoint.getTransform().scale.x / 2);
                 }
             } else if (orientation == Engine.GUI.VERTICAL) {
-                if (sliderPoint.getTransform().position.y >= this.getTransform().position.y && sliderPoint.getTransform().position.y + sliderPoint.getTransform().scale.y <= this.getTransform().position.y + this.getTransform().scale.y) {
+                if (sliderPoint.getTransform().position.y + sliderPoint.getTransform().scale.y / 2 >= this.getTransform().position.y) {
                     sliderPoint.getTransform().position.y = MouseListener.getOrthoCursorPos().y - (sliderPoint.getTransform().scale.y / 2);
                 }
             }
         }
-        // Here we are checking if the slider point is outside of the max lenght or height of the slider itself
+        // Here we are checking if the slider point is outside of the max lenght or height of the slider box
         if (orientation == Engine.GUI.HORIZONTAL) {
-            if (sliderPoint.getTransform().position.x < this.getTransform().position.x) {
-                sliderPoint.getTransform().position.x = this.getTransform().position.x;
+            if (sliderPoint.getTransform().position.x + sliderPoint.getTransform().scale.x / 2 < this.getTransform().position.x) {
+                sliderPoint.getTransform().position.x = this.getTransform().position.x - sliderPoint.getTransform().scale.x / 2;
             }
-            if (sliderPoint.getTransform().position.x + sliderPoint.getTransform().scale.x > this.getTransform().position.x + this.getTransform().scale.x) {
-                sliderPoint.getTransform().position.x = this.getTransform().position.x + this.getTransform().scale.x - sliderPoint.getTransform().scale.x;
+            if (sliderPoint.getTransform().position.x + sliderPoint.getTransform().scale.x / 2 > this.getTransform().position.x + this.getTransform().scale.x) {
+                sliderPoint.getTransform().position.x = this.getTransform().position.x + this.getTransform().scale.x - sliderPoint.getTransform().scale.x / 2;
             }
         } else if (orientation == Engine.GUI.VERTICAL) {
-            if (sliderPoint.getTransform().position.y < this.getTransform().position.y) {
-                sliderPoint.getTransform().position.y = this.getTransform().position.y;
+            if (sliderPoint.getTransform().position.y + sliderPoint.getTransform().scale.y / 2 < this.getTransform().position.y) {
+                sliderPoint.getTransform().position.y = this.getTransform().position.y - sliderPoint.getTransform().scale.y / 2;
             }
-            if (sliderPoint.getTransform().position.y + sliderPoint.getTransform().scale.y > this.getTransform().position.y + this.getTransform().scale.y) {
-                sliderPoint.getTransform().position.y = this.getTransform().position.y + this.getTransform().scale.y - sliderPoint.getTransform().scale.y;
+            if (sliderPoint.getTransform().position.y + sliderPoint.getTransform().scale.y / 2 > this.getTransform().position.y + this.getTransform().scale.y) {
+                sliderPoint.getTransform().position.y = this.getTransform().position.y + this.getTransform().scale.y - sliderPoint.getTransform().scale.y / 2;
             }
+        }
+        calculateNewValue();
+    }
+
+    private void calculateNewValue() {
+        if (orientation == Engine.GUI.HORIZONTAL) {
+            /*double normalizedSliderPos = (sliderPoint.getTransform().position.x + sliderPoint.getTransform().scale.x / 2) / getTransform().scale.x - 1.5625;
+            double interval = maxValue - minValue;*/
+            this.currentValue = (getTransform().position.x + getTransform().scale.x - getTransform().position.x) * (maxValue - minValue) + minValue;
         }
     }
 
-    public float getCurrentValue() {
+    public double getCurrentValue() {
         return currentValue;
     }
 
-    public float getMinValue() {
+    public double getMinValue() {
         return minValue;
     }
 
-    public float getMaxValue() {
+    public double getMaxValue() {
         return maxValue;
     }
 
