@@ -19,6 +19,7 @@ import java.text.MessageFormat;
 
 import static fr.dwightstudio.dsengine.Engine.FULLSCREEN;
 import static fr.dwightstudio.dsengine.Engine.WINDOWED;
+import static fr.dwightstudio.dsengine.scheduling.Scheduler.masterLoop;
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
@@ -29,6 +30,7 @@ public class GLFWWindow {
     private static long window;
     private static int WIDTH;
     private static int HEIGHT;
+    private static double dt = 0.0f;
     private final long windowMode;
     private Thread eventThread;
 
@@ -65,6 +67,13 @@ public class GLFWWindow {
      */
     public static long getWindow() {
         return GLFWWindow.window;
+    }
+
+    /**
+     * @return the processing time in seconds of the last frame
+     */
+    public static double getDeltaTime() {
+        return dt;
     }
 
     /**
@@ -125,12 +134,11 @@ public class GLFWWindow {
     public void startLoop() {
         double beginTime = glfwGetTime();
         double endTime;
-        double dt = 0.0f;
         GameLogger.getLogger("GLFWWindow").info("Started the game loop");
         while (!glfwWindowShouldClose(window)) {
             glfwPollEvents(); // The key callback will be invoked only during this call
 
-            render(dt);
+            masterLoop(dt);
 
             // Calculate the deltaTime
             endTime = glfwGetTime();
@@ -149,15 +157,5 @@ public class GLFWWindow {
         glfwDestroyWindow(window); // Destroy the GLFWWindow
         glfwTerminate(); // Terminate GLFW
         GameLogger.getLogger("GLFWWindow").info("Terminated");
-    }
-
-    private void render(double dt) {
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear the current framebuffer
-
-        // Render the current scene
-        SceneManager.updateScenes(dt);
-
-        FramebufferManager.renderAll();
-        glfwSwapBuffers(window); // Swap the buffers
     }
 }
