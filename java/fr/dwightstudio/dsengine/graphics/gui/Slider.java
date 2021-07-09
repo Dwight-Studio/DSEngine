@@ -12,22 +12,18 @@ import fr.dwightstudio.dsengine.Engine;
 import fr.dwightstudio.dsengine.graphics.objects.Color;
 import fr.dwightstudio.dsengine.graphics.primitives.Surface;
 import fr.dwightstudio.dsengine.inputs.MouseListener;
-import fr.dwightstudio.dsengine.logging.GameLogger;
 import org.joml.Vector2f;
-import org.lwjgl.opengl.GLUtil;
-
-import javax.swing.*;
 
 public class Slider extends Surface {
 
-    private double minValue;
-    private double maxValue;
+    private float minValue;
+    private float maxValue;
     private int orientation;
     private boolean selected = false;
 
     private final Surface sliderPoint;
 
-    private double currentValue;
+    private float currentValue;
 
     /**
      * Create a new Slider
@@ -120,21 +116,21 @@ public class Slider extends Surface {
 
     private void calculateNewValue() {
         if (orientation == Engine.GUI.HORIZONTAL) {
-            /*double normalizedSliderPos = (sliderPoint.getTransform().position.x + sliderPoint.getTransform().scale.x / 2) / getTransform().scale.x - 1.5625;
-            double interval = maxValue - minValue;*/
-            this.currentValue = (getTransform().position.x + getTransform().scale.x - getTransform().position.x) * (maxValue - minValue) + minValue;
+            float sliderPos = sliderPoint.getTransform().position.x + sliderPoint.getTransform().scale.x / 2;
+            float test = (sliderPos - getTransform().position.x) / (getTransform().position.x + getTransform().scale.x - getTransform().position.x - sliderPoint.getTransform().scale.x);
+            this.currentValue = test * (maxValue - minValue) + minValue;
         }
     }
 
-    public double getCurrentValue() {
+    public float getCurrentValue() {
         return currentValue;
     }
 
-    public double getMinValue() {
+    public float getMinValue() {
         return minValue;
     }
 
-    public double getMaxValue() {
+    public float getMaxValue() {
         return maxValue;
     }
 

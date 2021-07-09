@@ -85,9 +85,7 @@ public class Scheduler {
     // Task Execution and Cleaning
 
     private static void execute(int stage) {
-        List<Task> stageTask = pendingTasks.stream().filter(task -> (task.stages & stage) == stage && !task.isCanceled()).collect(Collectors.toList());
-
-        stageTask.sort(Comparator.comparingInt(task -> task.priority));
+        List<Task> stageTask = pendingTasks.stream().filter(task -> (task.stages & stage) == stage && !task.isCanceled()).sorted(Comparator.comparingInt(task -> task.priority)).collect(Collectors.toList());
 
         stageTask.forEach(task -> {
             try {
