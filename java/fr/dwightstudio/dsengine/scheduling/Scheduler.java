@@ -95,12 +95,24 @@ public class Scheduler {
                 if (task.repeatable) {
                     task.internalPeriod += GLFWWindow.getDeltaTime() * 1000;
                     if (task.internalDelay >= task.delay && task.internalPeriod >= task.period) {
-                        task.runnable.run();
+                        if (task.runnable instanceof AsyncScheduledRunnable) {
+                            Thread t = new Thread(task.runnable);
+                            t.setName(MessageFormat.format("Engine Task {0} Thread", task.ID));
+                            t.start();
+                        } else {
+                            task.runnable.run();
+                        }
                         task.internalPeriod = 0;
                     }
                 } else {
                     if (task.internalDelay >= task.delay) {
-                        task.runnable.run();
+                        if (task.runnable instanceof AsyncScheduledRunnable) {
+                            Thread t = new Thread(task.runnable);
+                            t.setName(MessageFormat.format("Engine Task {0} Thread", task.ID));
+                            t.start();
+                        } else {
+                            task.runnable.run();
+                        }
                         task.setCanceled(true);
                         pendingTasks.remove(task);
                     }
