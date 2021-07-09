@@ -17,6 +17,7 @@ public class Task implements Comparable {
     public final int stages;
     public final int priority;
     public final int delay;
+    public final boolean async;
     protected int internalDelay;
     public final boolean repeatable;
     public final int period;
@@ -26,7 +27,8 @@ public class Task implements Comparable {
 
     public boolean canceled = false;
 
-    protected Task(Runnable runnable, int stages, int priority, int delay, boolean repeatable, int period) {
+    protected Task(Runnable runnable, int stages, boolean async, int priority, int delay, boolean repeatable, int period) {
+        this.async = async;
         this.ID = Scheduler.getID();
         this.stages = stages;
         this.priority = priority;

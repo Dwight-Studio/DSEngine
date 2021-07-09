@@ -13,48 +13,52 @@ public abstract class ScheduledRunnable implements Runnable {
      * Plans this runnable to be executed at a specified execution stage.
      *
      * @param stages a Bit flag that indicates the execution stage
+     * @param async boolean value that indicates if the task is asynchronous (executed in a thread)
      * @param priority the Execution priority (lowest priority = execute first)
      * @return the Task (can be canceled)
      */
-    public final Task plan(int stages, int priority) {
-        return Scheduler.plan(this, stages, priority);
+    public final Task plan(int stages, boolean async, int priority) {
+        return Scheduler.plan(this, stages, async, priority);
     }
 
     /**
      * Plans this runnable to be executed at a specified execution stage after a certain amount of time.
      *
      * @param stages a Bit flag that indicates the execution stage (see const PRE_RENDER for example)
+     * @param async boolean value that indicates if the task is asynchronous (executed in a thread)
      * @param priority the Execution priority (lowest priority = execute first)
      * @param delay the delay in millis to wait before executing (executed in the right stage after the delay is over)
      * @return the Task (can be canceled)
      */
-    public final Task delay(int stages, int priority, int delay) {
-        return Scheduler.delay(this, stages, priority, delay);
+    public final Task delay(int stages, boolean async, int priority, int delay) {
+        return Scheduler.delay(this, stages, async, priority, delay);
     }
 
     /**
      * Plans this runnable to be executed at a specified execution stage multiple times (with a period).
      *
      * @param stages a Bit flag that indicates the execution stage (see const PRE_RENDER for example)
+     * @param async boolean value that indicates if the task is asynchronous (executed in a thread)
      * @param priority the Execution priority (lowest priority = execute first)
      * @param period the delay between each execution (0 = execution at each iteration)
      * @return the Task (can be canceled)
      */
-    public final Task planRepeated(int stages, int priority, int period) {
-        return Scheduler.planRepeated(this, stages, priority, period);
+    public final Task planRepeated(int stages, boolean async, int priority, int period) {
+        return Scheduler.planRepeated(this, stages, async, priority, period);
     }
 
     /**
      * Plans this runnable to be executed at a specified execution stage multiple times (with a period) after a certain amount of time.
      *
      * @param stages a Bit flag that indicates the execution stage (see const PRE_RENDER for example)
+     * @param async boolean value that indicates if the task is asynchronous (executed in a thread)
      * @param priority the Execution priority (lowest priority = execute first)
      * @param period the delay between each execution (0 = execution at each iteration)
      * @param delay the delay in millis to wait before executing (executed in the right stage after the delay is over)
      * @return the Task (can be canceled)
      */
-    public final Task delayRepeated(int stages, int priority, int period, int delay) {
-        return Scheduler.delayRepeated(this, stages, priority, period, delay);
+    public final Task delayRepeated(int stages, boolean async, int priority, int period, int delay) {
+        return Scheduler.delayRepeated(this, stages, async, priority, period, delay);
     }
 
     /**

@@ -93,7 +93,7 @@ public class Scheduler {
                 if (task.repeatable) {
                     task.internalPeriod += GLFWWindow.getDeltaTime() * 1000;
                     if (task.internalDelay >= task.delay && task.internalPeriod >= task.period) {
-                        if (task.runnable instanceof AsyncScheduledRunnable) {
+                        if (task.async) {
                             Thread t = new Thread(task.runnable);
                             t.setName(MessageFormat.format("Engine Task {0} Thread", task.ID));
                             t.start();
@@ -104,7 +104,7 @@ public class Scheduler {
                     }
                 } else {
                     if (task.internalDelay >= task.delay) {
-                        if (task.runnable instanceof AsyncScheduledRunnable) {
+                        if (task.async) {
                             Thread t = new Thread(task.runnable);
                             t.setName(MessageFormat.format("Engine Task {0} Thread", task.ID));
                             t.start();
@@ -136,11 +136,12 @@ public class Scheduler {
      *
      * @param runnable the runnable to be executed
      * @param stages a Bit flag that indicates the execution stage (see const PRE_RENDER for example)
+     * @param async boolean value that indicates if the task is asynchronous (executed in a thread)
      * @param priority the Execution priority (lowest priority = execute first)
      * @return the Task (can be canceled)
      */
-    public static Task plan(Runnable runnable, int stages, int priority) {
-        Task task = new Task(runnable, stages, priority, 0, false, 0);
+    public static Task plan(Runnable runnable, int stages, boolean async, int priority) {
+        Task task = new Task(runnable, stages, async, priority, 0, false, 0);
         pendingTasks.add(task);
         return task;
     }
@@ -150,12 +151,13 @@ public class Scheduler {
      *
      * @param runnable the runnable to be executed
      * @param stages a Bit flag that indicates the execution stage (see const PRE_RENDER for example)
+     * @param async boolean value that indicates if the task is asynchronous (executed in a thread)
      * @param priority the Execution priority (lowest priority = execute first)
      * @param delay the delay in millis to wait before executing (executed in the right stage after the delay is over)
      * @return the Task (can be canceled)
      */
-    public static Task delay(Runnable runnable, int stages, int priority, int delay) {
-        Task task = new Task(runnable, stages, priority, delay, false, 0);
+    public static Task delay(Runnable runnable, int stages, boolean async, int priority, int delay) {
+        Task task = new Task(runnable, stages, async, priority, delay, false, 0);
         pendingTasks.add(task);
         return task;
     }
@@ -165,12 +167,13 @@ public class Scheduler {
      *
      * @param runnable the runnable to be executed
      * @param stages a Bit flag that indicates the execution stage (see const PRE_RENDER for example)
+     * @param async boolean value that indicates if the task is asynchronous (executed in a thread)
      * @param priority the Execution priority (lowest priority = execute first)
      * @param period the delay between each execution (0 = execution at each iteration)
      * @return the Task (can be canceled)
      */
-    public static Task planRepeated(Runnable runnable, int stages, int priority, int period) {
-        Task task = new Task(runnable, stages, priority, 0, true, period);
+    public static Task planRepeated(Runnable runnable, int stages, boolean async, int priority, int period) {
+        Task task = new Task(runnable, stages, async, priority, 0, true, period);
         pendingTasks.add(task);
         return task;
     }
@@ -180,13 +183,14 @@ public class Scheduler {
      *
      * @param runnable the runnable to be executed
      * @param stages a Bit flag that indicates the execution stage (see const PRE_RENDER for example)
+     * @param async boolean value that indicates if the task is asynchronous (executed in a thread)
      * @param priority the Execution priority (lowest priority = execute first)
      * @param period the delay between each execution (0 = execution at each iteration)
      * @param delay the delay in millis to wait before executing (executed in the right stage after the delay is over)
      * @return the Task (can be canceled)
      */
-    public static Task delayRepeated(Runnable runnable, int stages, int priority, int period, int delay) {
-        Task task = new Task(runnable, stages, priority, delay, true, period);
+    public static Task delayRepeated(Runnable runnable, int stages, boolean async, int priority, int period, int delay) {
+        Task task = new Task(runnable, stages, async, priority, delay, true, period);
         pendingTasks.add(task);
         return task;
     }
@@ -196,14 +200,15 @@ public class Scheduler {
      *
      * @param runnable the runnable to be executed
      * @param stages a Bit flag that indicates the execution stage (see const PRE_RENDER for example)
+     * @param async boolean value that indicates if the task is asynchronous (executed in a thread)
      * @param priority the Execution priority (lowest priority = execute first)
      * @param delay the delay in millis to wait before executing (executed in the right stage after the delay is over)
      * @param repeatable boolean value that indicates the periodicity of the task
      * @param period the delay between each execution (0 = execution at each iteration)
      * @return the Task (can be canceled)
      */
-    public static Task schedule(Runnable runnable, int stages, int priority, int delay, boolean repeatable, int period) {
-        Task task = new Task(runnable, stages, priority, delay, repeatable, period);
+    public static Task schedule(Runnable runnable, int stages, boolean async, int priority, int delay, boolean repeatable, int period) {
+        Task task = new Task(runnable, stages, async, priority, delay, repeatable, period);
         pendingTasks.add(task);
         return task;
     }
