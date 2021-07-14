@@ -16,9 +16,9 @@ import org.joml.Vector2f;
 
 public class Slider extends Surface {
 
-    private float minValue;
-    private float maxValue;
-    private int orientation;
+    private final float minValue;
+    private final float maxValue;
+    private final int orientation;
     private boolean selected = false;
 
     private final Surface sliderPoint;

@@ -30,6 +30,7 @@ public class GLFWWindow {
     private static long window;
     private static int WIDTH;
     private static int HEIGHT;
+    private static String NAME;
     private static double dt = 0.0f;
     private final long windowMode;
     private Thread eventThread;
@@ -41,9 +42,10 @@ public class GLFWWindow {
      * @param HEIGHT the height of the Window
      * @param windowMode the window mode of the Window either Engine.FULLSCREEN or Engine.WINDOWED
      */
-    public GLFWWindow(int WIDTH, int HEIGHT, long windowMode) {
+    public GLFWWindow(int WIDTH, int HEIGHT, String windowName, long windowMode) {
         GLFWWindow.WIDTH = WIDTH;
         GLFWWindow.HEIGHT = HEIGHT;
+        GLFWWindow.NAME = windowName;
         this.windowMode = windowMode;
         Thread.currentThread().setName("Main Engine Thread");
     }
@@ -52,21 +54,21 @@ public class GLFWWindow {
      * @return the window width
      */
     public static int getWidth(){
-        return GLFWWindow.WIDTH;
+        return WIDTH;
     }
 
     /**
      * @return the window height
      */
     public static int getHeight(){
-        return GLFWWindow.HEIGHT;
+        return HEIGHT;
     }
 
     /**
      * @return the Window object
      */
     public static long getWindow() {
-        return GLFWWindow.window;
+        return window;
     }
 
     /**
@@ -74,6 +76,10 @@ public class GLFWWindow {
      */
     public static double getDeltaTime() {
         return dt;
+    }
+
+    public static String getName() {
+        return NAME;
     }
 
     /**
@@ -98,9 +104,9 @@ public class GLFWWindow {
 
         // Create the window. Throw a RuntimeException if
         if (windowMode == FULLSCREEN) {
-            window = glfwCreateWindow(GLFWWindow.WIDTH, GLFWWindow.HEIGHT, "Don't Play Together 2.0", glfwGetPrimaryMonitor(), NULL);
+            window = glfwCreateWindow(WIDTH, HEIGHT, NAME, glfwGetPrimaryMonitor(), NULL);
         } else if (windowMode == WINDOWED) {
-            window = glfwCreateWindow(GLFWWindow.WIDTH, GLFWWindow.HEIGHT, "Don't Play Together 2.0", NULL, NULL);
+            window = glfwCreateWindow(WIDTH, HEIGHT, NAME, NULL, NULL);
         } else {
             window = NULL;
         }
